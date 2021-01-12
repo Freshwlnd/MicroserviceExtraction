@@ -1,0 +1,6 @@
+npm WARN deprecated core-js@2.4.0: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
+npm WARN deprecated ng2-bootstrap@1.1.5: ng2-bootstrap is renamed to ngx-bootstrap, please do npm i ngx-bootstrap -S
+npm WARN deprecated @angular/http@2.0.0: Package no longer supported. Use @angular/common instead, see https://angular.io/guide/deprecations#angularhttp
+npm WARN deprecated gulp-util@3.0.7: gulp-util is deprecated - replace it, following the guidelines at https://medium.com/gulpjs/gulp-util-ca3b1f9f9ac5
+npm WARN deprecated gulp-protractor@2.4.0: major security issue https://github.com/dominictarr/event-stream/issues/116 issue in v4.1.1
+npm WARN deprecated tslint-stylish@2.1.0-beta: Replaced by tslint core formatter
