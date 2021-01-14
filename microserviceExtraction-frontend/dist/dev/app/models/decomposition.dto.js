@@ -1,0 +1,9 @@
+"use strict";
+var DecompositionDTO = (function () {
+    function DecompositionDTO() {
+    }
+    return DecompositionDTO;
+}());
+exports.DecompositionDTO = DecompositionDTO;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RlbHMvZGVjb21wb3NpdGlvbi5kdG8udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBO0lBQUE7SUFPQSxDQUFDO0lBQUQsdUJBQUM7QUFBRCxDQVBBLEFBT0MsSUFBQTtBQVBZLHdCQUFnQixtQkFPNUIsQ0FBQSIsImZpbGUiOiJhcHAvbW9kZWxzL2RlY29tcG9zaXRpb24uZHRvLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIERlY29tcG9zaXRpb25EVE8ge1xuICBsb2dpY2FsQ291cGxpbmc6IGJvb2xlYW47XG4gIHNlbWFudGljQ291cGxpbmc6IGJvb2xlYW47XG4gIGNvbnRyaWJ1dG9yQ291cGxpbmc6IGJvb2xlYW47XG4gIG51bVNlcnZpY2VzOiBOdW1iZXI7XG4gIGludGVydmFsU2Vjb25kczogTnVtYmVyO1xuICBzaXplVGhyZXNob2xkOiBOdW1iZXI7XG59XG4iXX0=

@@ -1,0 +1,9 @@
+"use strict";
+var DecompositionDTO = (function () {
+    function DecompositionDTO() {
+    }
+    return DecompositionDTO;
+}());
+exports.DecompositionDTO = DecompositionDTO;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RlbHMvZGVjb21wb3NpdGlvbi5kdG8gMi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUE7SUFBQTtJQU9BLENBQUM7SUFBRCx1QkFBQztBQUFELENBUEEsQUFPQyxJQUFBO0FBUFksd0JBQWdCLG1CQU81QixDQUFBIiwiZmlsZSI6ImFwcC9tb2RlbHMvZGVjb21wb3NpdGlvbi5kdG8gMi5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBEZWNvbXBvc2l0aW9uRFRPIHtcbiAgbG9naWNhbENvdXBsaW5nOiBib29sZWFuO1xuICBzZW1hbnRpY0NvdXBsaW5nOiBib29sZWFuO1xuICBjb250cmlidXRvckNvdXBsaW5nOiBib29sZWFuO1xuICBudW1TZXJ2aWNlczogTnVtYmVyO1xuICBpbnRlcnZhbFNlY29uZHM6IE51bWJlcjtcbiAgc2l6ZVRocmVzaG9sZDogTnVtYmVyO1xufVxuIl19

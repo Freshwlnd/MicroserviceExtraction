@@ -1,0 +1,10 @@
+"use strict";
+var index_1 = require('./index');
+exports.CloneRoutes = [
+    {
+        path: 'clone',
+        component: index_1.CloneComponent
+    }
+];
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kYXNoYm9hcmQvY2xvbmUvY2xvbmUucm91dGVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFFQSxzQkFBK0IsU0FBUyxDQUFDLENBQUE7QUFFNUIsbUJBQVcsR0FBWTtJQUNuQztRQUNDLElBQUksRUFBRSxPQUFPO1FBQ2IsU0FBUyxFQUFFLHNCQUFjO0tBQ3pCO0NBQ0QsQ0FBQyIsImZpbGUiOiJhcHAvZGFzaGJvYXJkL2Nsb25lL2Nsb25lLnJvdXRlcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFJvdXRlIH0gZnJvbSAnQGFuZ3VsYXIvcm91dGVyJztcblxuaW1wb3J0IHsgQ2xvbmVDb21wb25lbnQgfSBmcm9tICcuL2luZGV4JztcblxuZXhwb3J0IGNvbnN0IENsb25lUm91dGVzOiBSb3V0ZVtdID0gW1xuXHR7XG5cdFx0cGF0aDogJ2Nsb25lJyxcblx0XHRjb21wb25lbnQ6IENsb25lQ29tcG9uZW50XG5cdH1cbl07XG4iXX0=

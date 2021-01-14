@@ -1,0 +1,10 @@
+"use strict";
+var index_1 = require('./index');
+exports.MicroservicesRoutes = [
+    {
+        path: 'microservices',
+        component: index_1.MicroservicesComponent
+    }
+];
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kYXNoYm9hcmQvbWljcm9zZXJ2aWNlcy9taWNyb3NlcnZpY2VzLnJvdXRlcyAyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFFQSxzQkFBdUMsU0FBUyxDQUFDLENBQUE7QUFFcEMsMkJBQW1CLEdBQVk7SUFDM0M7UUFDQyxJQUFJLEVBQUUsZUFBZTtRQUNyQixTQUFTLEVBQUUsOEJBQXNCO0tBQ2pDO0NBQ0QsQ0FBQyIsImZpbGUiOiJhcHAvZGFzaGJvYXJkL21pY3Jvc2VydmljZXMvbWljcm9zZXJ2aWNlcy5yb3V0ZXMgMi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFJvdXRlIH0gZnJvbSAnQGFuZ3VsYXIvcm91dGVyJztcblxuaW1wb3J0IHsgTWljcm9zZXJ2aWNlc0NvbXBvbmVudCB9IGZyb20gJy4vaW5kZXgnO1xuXG5leHBvcnQgY29uc3QgTWljcm9zZXJ2aWNlc1JvdXRlczogUm91dGVbXSA9IFtcblx0e1xuXHRcdHBhdGg6ICdtaWNyb3NlcnZpY2VzJyxcblx0XHRjb21wb25lbnQ6IE1pY3Jvc2VydmljZXNDb21wb25lbnRcblx0fVxuXTtcbiJdfQ==

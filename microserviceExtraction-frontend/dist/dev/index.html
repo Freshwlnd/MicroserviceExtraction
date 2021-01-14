@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Welcome to angular2-seed!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css?1610584952027">
+    <link rel="stylesheet" href="/assets/sass/app.css?1610584952028">
+    <!-- endinject -->
+</head>
+<body>
+
+    <sd-app>
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </sd-app>
+
+    <script>
+    // Fixes undefined module function in SystemJS bundle
+    function module() {}
+    </script>
+
+    <!-- shims:js -->
+    <script src="/node_modules/core-js/client/shim.min.js?1610584952015"></script>
+    <script src="/node_modules/systemjs/dist/system.src.js?1610584952017"></script>
+    <!-- endinject -->
+
+    
+    <script src="/app/system-config.js"></script>
+    
+
+    <!-- libs:js -->
+    <script src="/node_modules/zone.js/dist/zone.js?1610584952021"></script>
+    <script src="/node_modules/rxjs/bundles/Rx.min.js?1610584952023"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js?1610584952024"></script>
+    <script src="/node_modules/highcharts/highcharts.js?1610584952025"></script>
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <!-- endinject -->
+
+    
+    <script>
+        System.import('app/main')
+        .catch(function (e) {
+            console.error(e,
+                'Report this error at https://github.com/mgechev/angular2-seed/issues');
+        });
+    </script>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css" />
+</body>
+</html>
