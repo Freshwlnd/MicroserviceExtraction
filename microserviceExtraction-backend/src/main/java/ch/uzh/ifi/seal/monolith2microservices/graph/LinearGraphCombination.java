@@ -16,14 +16,25 @@ public class LinearGraphCombination {
 
     private  List<ContributorCoupling> contributorCouplings;
 
+    private List<DynamicCoupling> dynamicCouplings;
+
     private int logicalCouplingFactor = 1;
 
     private int semanticCouplingFactor = 1;
 
     private int contributorCouplingFactor = 1;
 
+    private int dynamicCouplingFactor = 1;
+
+    private boolean needSort = true;
+
     public static LinearGraphCombination create(){
         return new LinearGraphCombination();
+    }
+
+    public LinearGraphCombination setNeedSort(boolean needSort) {
+        this.needSort = needSort;
+        return this;
     }
 
     public LinearGraphCombination withLogicalCouplings(List<LogicalCoupling> logicalCouplings){
@@ -41,6 +52,12 @@ public class LinearGraphCombination {
         return this;
     }
 
+    public LinearGraphCombination withDynamicCouplings(List<DynamicCoupling> dynamicCouplings){
+        this.dynamicCouplings= dynamicCouplings;
+        return this;
+    }
+
+
     public LinearGraphCombination withLogicalFactor(int factor){
         this.logicalCouplingFactor = factor;
         return this;
@@ -56,6 +73,12 @@ public class LinearGraphCombination {
         return this;
     }
 
+    public LinearGraphCombination withDynamicFactor(int factor){
+        this.dynamicCouplingFactor = factor;
+        return this;
+    }
+
+
     public List<BaseCoupling> generate(){
         List<CouplingTriple> triples = mapCouplingsOnSameEdge();
         List<BaseCoupling> couplings = new ArrayList<>();
@@ -63,7 +86,8 @@ public class LinearGraphCombination {
             double logicalWeight = t.getLogicalCoupling() == null ? 0 : this.logicalCouplingFactor * t.getLogicalCoupling().getScore();
             double semanticWeight = t.getSemanticCoupling() == null ? 0 : this.semanticCouplingFactor * t.getSemanticCoupling().getScore();
             double contributorWeight = t.getContributorCoupling() == null ? 0 : this.contributorCouplingFactor* t.getContributorCoupling().getScore();
-            double combinedWeight = logicalWeight + semanticWeight + contributorWeight;
+            double dynamicWeight = t.getContributorCoupling() == null ? 0 : this.dynamicCouplingFactor* t.getDynamicCoupling().getScore();
+            double combinedWeight = logicalWeight + semanticWeight + contributorWeight + dynamicWeight;
             BaseCoupling coupling = new BaseCoupling(t.getFirstFile(), t.getSecondFile(),combinedWeight);
             couplings.add(coupling);
         });
@@ -117,15 +141,31 @@ public class LinearGraphCombination {
             });
         }
 
+        if(this.dynamicCouplings != null){
+            this.dynamicCouplings.forEach(d -> {
+                String key = generateKeyFromFileNames(d.getFirstFileName(), d.getSecondFileName());
+                CouplingTriple triple = couplingMap.get(key);
+                if(triple == null){
+                    triple = new CouplingTriple();
+                    triple.setDynamicCoupling(d);
+                    triple.setFirstFile(d.getFirstFileName());
+                    triple.setSecondFile(d.getSecondFileName());
+                }else{
+                    triple.setDynamicCoupling(d);
+                }
+                couplingMap.put(key, triple);
+            });
+        }
+
         return couplingMap.values().stream().collect(Collectors.toList());
     }
 
-    private String generateKeyFromFileNames(String firstFileName, String secondFileName){
+    private String generateKeyFromFileNames(String firstFileName, String secondFileName) {
         List<String> fileNames = new ArrayList<>();
         fileNames.add(firstFileName);
         fileNames.add(secondFileName);
-        Collections.sort(fileNames);
-        return String.join("|",fileNames);
+        if(this.needSort) Collections.sort(fileNames);
+        return String.join("|", fileNames);
     }
 
 }

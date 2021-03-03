@@ -48,7 +48,7 @@ public class MetricsExportService {
 
     public String exportLogicalCouplingPerformanceMetrics() throws Exception {
         List<Decomposition> decompositions = decompositionRepository.findAll().stream().filter(decomposition -> {
-                    return (decomposition.getParameters().isLogicalCoupling() &&
+            return (decomposition.getParameters().isLogicalCoupling() &&
                     !decomposition.getParameters().isContributorCoupling() &&
                     !decomposition.getParameters().isSemanticCoupling());}).collect(Collectors.toList());
 
@@ -82,6 +82,17 @@ public class MetricsExportService {
         return createPerformanceTable(decompositions);
     }
 
+    // need change
+    public String exportDynamicCouplingPerformanceMetrics() throws Exception {
+        List<Decomposition> decompositions = decompositionRepository.findAll().stream().filter(decomposition -> {
+            return (!decomposition.getParameters().isLogicalCoupling() &&
+                    !decomposition.getParameters().isContributorCoupling() &&
+                    !decomposition.getParameters().isSemanticCoupling() &&
+                    decomposition.getParameters().isDynamicCoupling());}).collect(Collectors.toList());
+
+        return createPerformanceTable(decompositions);
+    }
+
     private String createQualityMetricsRow(EvaluationMetrics metrics, Decomposition decomposition, char separator){
         StringBuilder sb = new StringBuilder();
         sb.append(decomposition.getRepository().getName());
@@ -91,6 +102,8 @@ public class MetricsExportService {
         sb.append(decomposition.getParameters().isContributorCoupling() ? 'x':'o');
         sb.append(separator);
         sb.append(decomposition.getParameters().isSemanticCoupling() ? 'x':'o');
+        sb.append(separator);
+        sb.append(decomposition.getParameters().isDynamicCoupling() ? 'x':'o');
         sb.append(separator);
         sb.append(metrics.getAverageClassNumber());
         sb.append(separator);

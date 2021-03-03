@@ -49,7 +49,7 @@ public class ClassContentVisitor extends SimpleFileVisitor<Path> {
                 while((currentLine = reader.readLine()) != null){
                     //filter out import statements
                     for(String importStatement: StopWords.IMPORT_KEYWORDS){
-                        if(currentLine.startsWith(importStatement)){
+                         if(currentLine.startsWith(importStatement)){
                             continue;
                         }
                     }

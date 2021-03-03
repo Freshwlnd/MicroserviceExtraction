@@ -3,10 +3,7 @@ package ch.uzh.ifi.seal.monolith2microservices.services.decomposition;
 import ch.uzh.ifi.seal.monolith2microservices.models.DecompositionParameters;
 import ch.uzh.ifi.seal.monolith2microservices.graph.LinearGraphCombination;
 import ch.uzh.ifi.seal.monolith2microservices.graph.MSTGraphClusterer;
-import ch.uzh.ifi.seal.monolith2microservices.models.couplings.BaseCoupling;
-import ch.uzh.ifi.seal.monolith2microservices.models.couplings.ContributorCoupling;
-import ch.uzh.ifi.seal.monolith2microservices.models.couplings.LogicalCoupling;
-import ch.uzh.ifi.seal.monolith2microservices.models.couplings.SemanticCoupling;
+import ch.uzh.ifi.seal.monolith2microservices.models.couplings.*;
 import ch.uzh.ifi.seal.monolith2microservices.models.git.ChangeEvent;
 import ch.uzh.ifi.seal.monolith2microservices.models.git.GitRepository;
 import ch.uzh.ifi.seal.monolith2microservices.models.graph.Component;
@@ -16,6 +13,7 @@ import ch.uzh.ifi.seal.monolith2microservices.persistence.ComponentRepository;
 import ch.uzh.ifi.seal.monolith2microservices.persistence.DecompositionRepository;
 import ch.uzh.ifi.seal.monolith2microservices.persistence.ParametersRepository;
 import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.contributors.ContributorCouplingEngine;
+import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.dynamiccoupling.DynamicCouplingEngine;
 import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.logicalcoupling.LogicalCouplingEngine;
 import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.semanticcoupling.SemanticCouplingEngine;
 import ch.uzh.ifi.seal.monolith2microservices.services.evaluation.MicroserviceEvaluationService;
@@ -65,6 +63,9 @@ public class DecompositionService {
     ContributorCouplingEngine contributorCouplingEngine;
 
     @Autowired
+    DynamicCouplingEngine dynamicCouplingEngine;
+
+    @Autowired
     MicroserviceEvaluationService microserviceEvaluationService;
 
     public Decomposition decompose(GitRepository repository, DecompositionParameters parameters){
@@ -74,14 +75,22 @@ public class DecompositionService {
             List<ChangeEvent> history = computeHistory(repository);
 
             logger.info("DECOMPOSITION-------------------------");
-            logger.info("STRATEGIES: Logical Coupling: " + parameters.isLogicalCoupling() + " Semantic Coupling: " + parameters.isSemanticCoupling() + "  Contributor Coupling: " + parameters.isContributorCoupling());
+            logger.info("STRATEGIES: Logical Coupling: " + parameters.isLogicalCoupling() + " Semantic Coupling: " + parameters.isSemanticCoupling() + "  Contributor Coupling: " + parameters.isContributorCoupling() + "  Dynamic Coupling: " + parameters.isDynamicCoupling());
             logger.info("PARAMETERS: History Interval Size (s): " + parameters.getIntervalSeconds() + " Target Number of Services: " + parameters.getNumServices());
 
             List<BaseCoupling> couplings = new ArrayList<>();
 
+            List<BaseCoupling> callingGraph = new ArrayList<>();
+
             long strategyStartTimestamp = System.currentTimeMillis();
 
-            if (parameters.isLogicalCoupling() && parameters.isSemanticCoupling() && parameters.isContributorCoupling()) {
+            if(parameters.isDynamicCoupling()) {
+
+                callingGraph = LinearGraphCombination.create().setNeedSort(false).withDynamicCouplings(computeDynamicCallingCouplings(repository)).generate();
+
+                couplings = LinearGraphCombination.create().setNeedSort(true).withDynamicCouplings(computeDynamicRelationCouplings(repository)).generate();
+
+            } else if (parameters.isLogicalCoupling() && parameters.isSemanticCoupling() && parameters.isContributorCoupling()) {
 
                 couplings = LinearGraphCombination.create().withLogicalCouplings(computeLogicalCouplings(history, parameters))
                         .withSemanticCouplings(computeSemanticCouplings(repository))
@@ -118,9 +127,20 @@ public class DecompositionService {
 
             long clusteringStartTimestamp = System.currentTimeMillis();
 
-            Set<Component> components = MSTGraphClusterer.clusterWithSplit(couplings, parameters.getSizeThreshold(), parameters.getNumServices());
+            Set<Component> components;
+
+            if(parameters.isDynamicCoupling()) {
+                // 两张图
+                components = MSTGraphClusterer.clusterWithSplit(couplings, parameters.getSizeThreshold(), parameters.getNumServices());
+
+            } else {
+
+                components = MSTGraphClusterer.clusterWithSplit(couplings, parameters.getSizeThreshold(), parameters.getNumServices());
+
+            }
 
             long clusteringExecutionTimeMillis = System.currentTimeMillis() - clusteringStartTimestamp;
+
 
             logger.info("Saving decomposition to database.");
 
@@ -174,6 +194,14 @@ public class DecompositionService {
 
     private List<LogicalCoupling> computeLogicalCouplings(List<ChangeEvent> history, DecompositionParameters parameters) throws Exception{
         return logicalCouplingEngine.computeCouplings(history, parameters.getIntervalSeconds());
+    }
+
+    private List<DynamicCoupling> computeDynamicRelationCouplings(GitRepository repository) throws IOException{
+        return dynamicCouplingEngine.getRelationGraph(repository);
+    }
+
+    private List<DynamicCoupling> computeDynamicCallingCouplings(GitRepository repository) throws IOException{
+        return dynamicCouplingEngine.getCallingGraph(repository);
     }
 
 }

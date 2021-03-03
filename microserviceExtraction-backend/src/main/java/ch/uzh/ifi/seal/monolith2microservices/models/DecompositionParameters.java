@@ -25,6 +25,8 @@ public class DecompositionParameters {
 
     private boolean contributorCoupling;
 
+    private boolean dynamicCoupling;
+
     private int numServices;
 
     private int intervalSeconds;
@@ -59,6 +61,13 @@ public class DecompositionParameters {
         this.contributorCoupling = contributorCoupling;
     }
 
+    public boolean isDynamicCoupling() {
+        return dynamicCoupling;
+    }
+
+    public void setDynamicCoupling(boolean dynamicCoupling) {
+        this.dynamicCoupling = dynamicCoupling;
+    }
     public int getNumServices() {
         return numServices;
     }
@@ -89,6 +98,7 @@ public class DecompositionParameters {
                 "logicalCoupling=" + logicalCoupling +
                 ", semanticCoupling=" + semanticCoupling +
                 ", contributorCoupling=" + contributorCoupling +
+                ", dynamicCoupling=" + dynamicCoupling +
                 ", numServices=" + numServices +
                 ", intervalSeconds=" + intervalSeconds +
                 ", sizeThreshold=" + sizeThreshold +

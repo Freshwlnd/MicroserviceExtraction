@@ -31,6 +31,7 @@ public class ExportController {
         TextFileReport.writeToFile(metricsExportService.exportLogicalCouplingPerformanceMetrics(), "logicalCouplingPerformance.txt");
         TextFileReport.writeToFile(metricsExportService.exportSemanticCouplingPerformanceMetrics(), "semanticCouplingPerformance.txt");
         TextFileReport.writeToFile(metricsExportService.exportContributorCouplingPerformanceMetrics(), "contributorCouplingPerformance.txt");
+        TextFileReport.writeToFile(metricsExportService.exportDynamicCouplingPerformanceMetrics(), "dynamicCouplingPerformance.txt");
         return new ResponseEntity<String>("OK", HttpStatus.OK);
     }
 

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import ch.uzh.ifi.seal.monolith2microservices.models.couplings.ContributorCoupling;
+import ch.uzh.ifi.seal.monolith2microservices.models.couplings.DynamicCoupling;
 import ch.uzh.ifi.seal.monolith2microservices.models.couplings.LogicalCoupling;
 import ch.uzh.ifi.seal.monolith2microservices.models.couplings.SemanticCoupling;
 
@@ -29,6 +30,14 @@ public class Percentile {
 		return new Percentile(true,vals);	}
 
 	public static Percentile fromSemanticCouplings(List<SemanticCoupling> couplings){
+		List<Double> vals = new ArrayList<>();
+		couplings.forEach(c ->{
+			vals.add(c.getScore());
+		});
+		return new Percentile(true,vals);
+	}
+
+	public static Percentile fromDynamicCouplings(List<DynamicCoupling> couplings){
 		List<Double> vals = new ArrayList<>();
 		couplings.forEach(c ->{
 			vals.add(c.getScore());

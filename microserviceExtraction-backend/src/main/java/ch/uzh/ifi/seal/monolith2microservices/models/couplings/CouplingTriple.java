@@ -16,6 +16,8 @@ public class CouplingTriple {
 
     private ContributorCoupling contributorCoupling;
 
+    private DynamicCoupling dynamicCoupling;
+
     public LogicalCoupling getLogicalCoupling() {
         return logicalCoupling;
     }
@@ -38,6 +40,14 @@ public class CouplingTriple {
 
     public void setContributorCoupling(ContributorCoupling contributorCoupling) {
         this.contributorCoupling = contributorCoupling;
+    }
+
+    public DynamicCoupling getDynamicCoupling() {
+        return dynamicCoupling;
+    }
+
+    public void setDynamicCoupling(DynamicCoupling dynamicCoupling) {
+        this.dynamicCoupling = dynamicCoupling;
     }
 
     public String getFirstFile() {
