@@ -90,22 +90,23 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
         List<MethodCallContent> methodCallContents = new ArrayList<>();
 
         logfileContentListList.forEach(logfileContentsList -> {
-            List<MethodCall> methodCalls = new ArrayList<>();
-            int nowStackLevel = 0;
-            List<LogfileContent> queue = new ArrayList<>();
 
-            for(LogfileContent logfileContent: logfileContentsList) {
-                if(logfileContent.getCallingStackDepth()!=nowStackLevel) {
-                    queue.forEach(q -> {
-                        methodCalls.add(new MethodCall(getRelativeFileName(logfileContent.getMethodName()),getRelativeFileName(q.getMethodName())));
-                    });
-                    queue.clear();
-                    queue.add(logfileContent);
-                    nowStackLevel = logfileContent.getCallingStackDepth();
-                } else {
-                    queue.add(logfileContent);
+            List<MethodCall> methodCalls = new ArrayList<>();
+            Collections.sort(logfileContentsList);
+            Stack<LogfileContent> stk = new Stack<>();
+
+            logfileContentsList.forEach(logfileContent -> {
+
+                while(!stk.empty() || stk.peek().getCallingStackDepth() >= logfileContent.getCallingStackDepth()) {
+                    stk.pop();
                 }
-            }
+                if(!stk.empty()) {
+                    methodCalls.add(new MethodCall(stk.peek().getMethodName(), logfileContent.getMethodName()));
+                }
+                stk.push(logfileContent);
+
+
+            });
 
             methodCallContents.add(new MethodCallContent(methodCalls));
         });

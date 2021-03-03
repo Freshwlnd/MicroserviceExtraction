@@ -3,7 +3,7 @@ package ch.uzh.ifi.seal.monolith2microservices.models;
 /**
  * Created by freshwlnd on 03/03/21.
  */
-public class LogfileContent {
+public class LogfileContent implements Comparable<LogfileContent> {
 
     private String methodName;
 
@@ -43,4 +43,8 @@ public class LogfileContent {
 
     public void setCallingStackDepth(int callingStackDepth) { this.callingStackDepth = callingStackDepth; }
 
+    @Override
+    public int compareTo(LogfileContent o) {
+        return this.callingOrderId-o.getCallingOrderId();
+    }
 }
