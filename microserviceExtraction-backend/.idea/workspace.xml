@@ -2,8 +2,145 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e03b6cd-eeb4-425c-9199-b2be225fd216" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/LogfileContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/LogfileContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/LogfileVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/LogfileVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/controllers/DecompositionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/controllers/ExportController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/controllers/MicroservicesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/controllers/RepositoryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/conversion/EdgeRepresentation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/conversion/GraphRepresentation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/conversion/GraphRepresentationConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/conversion/NodeRepresentation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/dtos/DecompositionDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/dtos/RepositoryDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/git/ClassVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/git/GitClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/git/RepositoryHistory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/graph/ConnectedComponents.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/graph/LinearGraphCombination.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/graph/MinimumSpanningTree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/main/Configs.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/ClassContent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/DecompositionParameters.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/LogfileContent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/MethodCall.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/MethodCallContent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/couplings/BaseCoupling.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/couplings/ContributorCoupling.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/couplings/Coupling.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/couplings/CouplingTriple.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/couplings/DynamicCoupling.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/couplings/LogicalCoupling.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/couplings/SemanticCoupling.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/evaluation/EvaluationMetrics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/evaluation/MicroserviceMetrics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/evaluation/RawClassContent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/git/ChangeEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/git/Class.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/git/GitRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/graph/ClassNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/graph/Component.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/graph/Decomposition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/graph/Edge.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/graph/Microservice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/graph/NodeWeightPair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/models/graph/WeightedEdge.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/persistence/ClassNodeRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/persistence/ClassRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/persistence/ComponentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/persistence/DecompositionMetricsRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/persistence/DecompositionRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/persistence/MicroserviceMetricsRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/persistence/ParametersRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/persistence/RepositoryRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/MetricsExportService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/contributors/ContributorCouplingEngine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/LogfileVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/logicalcoupling/LogicalCouplingEngine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/SemanticCouplingEngine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/ClassContentVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/StopWordFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/StopWords.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/NgramTfIdf$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/NgramTfIdf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/RegularExpressionTokenizer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/TfIdf$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/TfIdf$KeySetIterable$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/TfIdf$KeySetIterable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/TfIdf$Normalization.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/TfIdf$TfType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/TfIdf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/TfIdfWrapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/tfidf/Tokenizer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/ClassLOCVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/ContributorMetricsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DecompositionEvaluationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/EvaluationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceEvaluationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/git/AuthorService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/git/FilterService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/git/GitCloneService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/git/HistoryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/git/ParsingService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/services/reporting/TextFileReport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/ClassContentFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/FilterInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/Hash.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/HexColorGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/Percentile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/comparators/ClassNodeComparator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/comparators/ComponentComparator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/comparators/CouplingComparator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/comparators/LogicalCouplingComparator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ch/uzh/ifi/seal/monolith2microservices/utils/comparators/WeightedEdgeComparator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/conjoined-change-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/conjoined-change-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/ClassNodeTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/ClusteringTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/CouplingTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/GraphTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/RepositoryDTOTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-ClassNodeTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-ClusteringTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-CouplingTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-GraphTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-RepositoryDTOTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-TfIdfTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TfIdfTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ClassNodeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ClusteringTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ConversionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/CouplingTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/GraphTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/MST.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/RepositoryDTOTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/TfIdfTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/.editorconfig 2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/.stylelintrc 2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/microservices/microservices.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/microservices/microservices.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/models/decomposition.dto.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/models/decomposition.dto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/tmp/app/dashboard/decompose/decompose.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/tmp/app/dashboard/decompose/decompose.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/microservices/microservices.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/microservices/microservices.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/models/decomposition.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/models/decomposition.dto.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,32 +154,54 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="40" column="17" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="22" />
+            <state relative-caret-position="141">
+              <caret line="97" selection-start-line="97" selection-end-line="97" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/LogfileVisitor.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="108" column="15" selection-start-line="108" selection-start-column="15" selection-end-line="108" selection-end-column="15" />
+            <state relative-caret-position="120">
+              <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCall.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCallContent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
               <folding>
-                <element signature="e#4601#4602#0" expanded="true" />
+                <element signature="e#252#253#0" expanded="true" />
+                <element signature="e#290#291#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/LogfileContent.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/LogfileVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-286">
-              <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+            <state relative-caret-position="247">
+              <caret line="131" column="51" selection-start-line="131" selection-start-column="51" selection-end-line="131" selection-end-column="51" />
               <folding>
-                <element signature="e#1424#1425#0" expanded="true" />
-                <element signature="e#1450#1451#0" expanded="true" />
+                <element signature="e#4507#4508#0" expanded="true" />
+                <element signature="e#4553#4554#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,8 +210,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="100" column="42" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="50" />
+            <state relative-caret-position="171">
+              <caret line="146" selection-start-line="146" selection-end-line="146" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/SemanticCouplingEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -60,8 +237,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/LinearGraphCombination.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="162" column="4" selection-start-line="162" selection-start-column="4" selection-end-line="168" selection-end-column="5" />
+            <state relative-caret-position="216">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
+              <folding>
+                <element signature="e#753#754#0" expanded="true" />
+                <element signature="e#804#805#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/couplings/CouplingTriple.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -91,7 +281,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/couplings/SemanticCoupling.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/couplings/DynamicCoupling.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/utils/Percentile.java" />
@@ -104,9 +293,11 @@
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/ClassContentVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/LinearGraphCombination.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/LogfileContent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/SemanticCouplingEngine.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/LogfileVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
       </list>
     </option>
   </component>
@@ -126,7 +317,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="720" />
     <option name="y" value="23" />
     <option name="width" value="720" />
@@ -138,8 +329,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -230,18 +419,31 @@
               <item name="microserviceExtraction-backend" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="monolith2microservices" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+              <item name="decomposition" type="462c0819:PsiDirectoryNode" />
+              <item name="semanticcoupling" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="conjoined-change" type="b2602c69:ProjectViewProjectNode" />
+              <item name="microserviceExtraction-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1614783801832" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1614830985132" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -286,18 +488,19 @@
       <updated>1610586165937</updated>
       <workItem from="1610586170687" duration="461000" />
       <workItem from="1610600894843" duration="25000" />
-      <workItem from="1614742199078" duration="21655000" />
+      <workItem from="1614742199078" duration="22498000" />
+      <workItem from="1614827732756" duration="3109000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22141000" />
+    <option name="totallyTimeSpent" value="26093000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="720" y="23" width="720" height="877" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.17310444" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.083690986" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -307,8 +510,8 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3299363" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3299363" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -334,6 +537,24 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java</url>
+          <line>88</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -364,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/utils/ClassContentFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
@@ -392,28 +606,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/main/Configs.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCallContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="e#252#253#0" expanded="true" />
-            <element signature="e#290#291#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -431,20 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/ClassContentVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="77" column="70" lean-forward="true" selection-start-line="77" selection-end-line="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/SemanticCouplingEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="44" column="31" lean-forward="true" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/contributors/ContributorCouplingEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -459,45 +641,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/ClassContentVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="100" column="42" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/LinearGraphCombination.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="162" column="4" selection-start-line="162" selection-start-column="4" selection-end-line="168" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="40" column="17" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="22" />
+        <state relative-caret-position="-516">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/LogfileContent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-286">
+        <state relative-caret-position="15">
           <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
-          <folding>
-            <element signature="e#1424#1425#0" expanded="true" />
-            <element signature="e#1450#1451#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/src.zip!/java/util/Stack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="1258" selection-start-line="1258" selection-end-line="1258" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/SemanticCouplingEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/couplings/CouplingTriple.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/LogfileVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="108" column="15" selection-start-line="108" selection-start-column="15" selection-end-line="108" selection-end-column="15" />
+        <state relative-caret-position="247">
+          <caret line="131" column="51" selection-start-line="131" selection-start-column="51" selection-end-line="131" selection-end-column="51" />
           <folding>
-            <element signature="e#4601#4602#0" expanded="true" />
+            <element signature="e#4507#4508#0" expanded="true" />
+            <element signature="e#4553#4554#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCallContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding>
+            <element signature="e#252#253#0" expanded="true" />
+            <element signature="e#290#291#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/LinearGraphCombination.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#753#754#0" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="146" selection-start-line="146" selection-end-line="146" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
         </state>
       </provider>
     </entry>

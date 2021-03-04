@@ -78,7 +78,7 @@ public class DynamicCouplingEngine {
                         } else {
                             relationCoupling.setScore(relationCoupling.getScore() + 1);
                         }
-                        callingMap.put(key,relationCoupling);
+                        relationMap.put(key,relationCoupling);
                     }
                 });
             });

@@ -97,11 +97,11 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
 
             logfileContentsList.forEach(logfileContent -> {
 
-                while(!stk.empty() || stk.peek().getCallingStackDepth() >= logfileContent.getCallingStackDepth()) {
+                while(!stk.empty() && stk.peek().getCallingStackDepth() >= logfileContent.getCallingStackDepth()) {
                     stk.pop();
                 }
                 if(!stk.empty()) {
-                    methodCalls.add(new MethodCall(stk.peek().getMethodName(), logfileContent.getMethodName()));
+                    methodCalls.add(new MethodCall(getRelativeFileName(stk.peek().getMethodName()), getRelativeFileName(logfileContent.getMethodName())));
                 }
                 stk.push(logfileContent);
 
@@ -128,13 +128,14 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
     private String getRelativeFileName(String methodName){
         String[] packageNameArray = methodName.split(" ");
         methodName = packageNameArray[packageNameArray.length-1];
-        packageNameArray = methodName.split(".");
+        methodName = methodName.split("\\(")[0];
+        packageNameArray = methodName.split("\\.");
         int n = packageNameArray.length-1;
         List<String> pacageNameList = new ArrayList<>();
         for(int i=0; i<n; i++) {
             pacageNameList.add(packageNameArray[i]);
         }
-        return String.join("/",pacageNameList);
+        return String.join("/",pacageNameList)+".java";
     }
 
 

@@ -47,6 +47,10 @@ export class MicroservicesComponent implements OnInit{
         parameterString = parameterString + " ContributorCoupling ";
       }
 
+      if(parameters.dynamicCoupling == true){
+        parameterString = parameterString + " DynamicCoupling ";
+      }
+
       parameterString = parameterString + " ]";
 
 

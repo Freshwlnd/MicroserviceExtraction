@@ -29,6 +29,8 @@ export class DecomposeComponent implements OnInit{
 
   contributorCoupling: boolean;
 
+  dynamicCoupling: boolean;
+
   numServices: Number = 4;
 
   intervalSeconds: Number = 3600;
@@ -69,6 +71,7 @@ export class DecomposeComponent implements OnInit{
     dto.logicalCoupling = this.logicalCoupling == true ? true : false;
     dto.semanticCoupling = this.semanticCoupling == true ? true : false;
     dto.contributorCoupling = this.contributorCoupling == true ? true : false;
+    dto.dynamicCoupling = this.dynamicCoupling == true ? true : false;
 
     this._rest.decompose(this.repository.id, dto).subscribe(
       result => {
