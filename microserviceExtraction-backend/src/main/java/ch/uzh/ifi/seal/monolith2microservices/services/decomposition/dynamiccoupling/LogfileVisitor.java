@@ -1,10 +1,7 @@
 package ch.uzh.ifi.seal.monolith2microservices.services.decomposition.dynamiccoupling;
 
 import ch.uzh.ifi.seal.monolith2microservices.main.Configs;
-import ch.uzh.ifi.seal.monolith2microservices.models.ClassContent;
-import ch.uzh.ifi.seal.monolith2microservices.models.LogfileContent;
-import ch.uzh.ifi.seal.monolith2microservices.models.MethodCall;
-import ch.uzh.ifi.seal.monolith2microservices.models.MethodCallContent;
+import ch.uzh.ifi.seal.monolith2microservices.models.*;
 import ch.uzh.ifi.seal.monolith2microservices.models.couplings.CouplingTriple;
 import ch.uzh.ifi.seal.monolith2microservices.models.git.GitRepository;
 import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.semanticcoupling.classprocessing.StopWords;
@@ -23,6 +20,8 @@ import java.util.stream.Collectors;
  */
 public class LogfileVisitor extends SimpleFileVisitor<Path> {
 
+    private Boolean isTest = false;
+
     // Define a matcher that only matches on .java, .rb. and .py files
     private PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*.logfile");
 
@@ -38,15 +37,29 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
 
             Path name = path.getFileName();
             if(matcher.matches(name)){
-                List<LogfileContent> logfileContents = new ArrayList<>();
+
 
                 BufferedReader reader = Files.newBufferedReader(path);
                 String currentLine;
-                while((currentLine = reader.readLine()) != null){
-                    logfileContents.add(transString2LogfileContent(currentLine));
+                if(isTest) {
+                    List<LogfileContent> logfileContents = new ArrayList<>();
+                    while ((currentLine = reader.readLine()) != null) {
+                        logfileContents.add(transString2LogfileContent(currentLine));
+                    }
+                    this.methodCallContents = extractMethodCallContentTest(logfileContents);
+                } else {
+                    List<LogfilePairContent> logfilePairContents = new ArrayList<>();
+                    Boolean isFirstline = true;
+                    while ((currentLine = reader.readLine()) != null) {
+                        if (isFirstline) {
+                            isFirstline = false;
+                            continue;
+                        }
+                        logfilePairContents.add(transString2LogfilePairContent(currentLine));
+                    }
+                    this.methodCallContents = extractMethodCallContent(logfilePairContents);
                 }
 
-                this.methodCallContents = extractMethodCallContent(logfileContents);
             }
 
         } catch(MalformedInputException mE){
@@ -69,21 +82,60 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
 
     }
 
-    private List<MethodCallContent> extractMethodCallContent(List<LogfileContent> logfileContents) {
+    private LogfilePairContent transString2LogfilePairContent(String str) {
+
+        String[] infos = str.split(";");
+        return new LogfilePairContent(Integer.parseInt(infos[0]), Integer.parseInt(infos[1]), infos[2], infos[3], infos[4], infos[5], infos[6], infos[7], infos[8], infos[9], infos[10], Double.parseDouble(infos[11]));
+
+    }
+
+    private List<MethodCallContent> extractMethodCallContent(List<LogfilePairContent> logfilePairContents) {
+
+        Map<Integer, List<LogfilePairContent>> logfileMap = new HashMap<>();
+
+        logfilePairContents.forEach(logfilePairContent -> {
+            Integer key = logfilePairContent.getTraceId();
+            List<LogfilePairContent> nowLogfilePairContents = logfileMap.get(key);
+            if(nowLogfilePairContents == null) {
+                nowLogfilePairContents = new ArrayList<>();
+            }
+            nowLogfilePairContents.add(logfilePairContent);
+            logfileMap.put(key,nowLogfilePairContents);
+        });
+
+        List<List<LogfilePairContent>> logfilePairContentLists = logfileMap.values().stream().collect(Collectors.toList());
+
+        List<MethodCallContent> methodCallContents = new ArrayList<>();
+
+        logfilePairContentLists.forEach(logfilePairContentsList -> {
+
+            List<MethodCall> methodCalls = new ArrayList<>();
+
+            logfilePairContentsList.forEach(logfilePairContent -> {
+                methodCalls.add(new MethodCall(getRelativeFileName(logfilePairContent.getMethod1()), getRelativeFileName(logfilePairContent.getMethod2())));
+            });
+
+            methodCallContents.add(new MethodCallContent(methodCalls));
+
+        });
+
+        return methodCallContents;
+
+    }
+
+    private List<MethodCallContent> extractMethodCallContentTest(List<LogfileContent> logfileContents) {
 
         Map<String, List<LogfileContent>> logfileMap = new HashMap<>();
 
-        if(logfileContents != null) {
-            logfileContents.forEach(logfileContent -> {
-                String key = generateKeyFromSessionIdTraceId(logfileContent.getSessionId(),logfileContent.getTraceId());
-                List<LogfileContent> nowLogfileContents = logfileMap.get(key);
-                if(nowLogfileContents == null) {
-                    nowLogfileContents = new ArrayList<>();
-                }
-                nowLogfileContents.add(logfileContent);
-                logfileMap.put(key,nowLogfileContents);
-            });
-        }
+        logfileContents.forEach(logfileContent -> {
+            String key = generateKeyFromSessionIdTraceId(logfileContent.getSessionId(),logfileContent.getTraceId());
+            List<LogfileContent> nowLogfileContents = logfileMap.get(key);
+            if(nowLogfileContents == null) {
+                nowLogfileContents = new ArrayList<>();
+            }
+            nowLogfileContents.add(logfileContent);
+            logfileMap.put(key,nowLogfileContents);
+        });
 
         List<List<LogfileContent>> logfileContentListList = logfileMap.values().stream().collect(Collectors.toList());
 
@@ -101,7 +153,7 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
                     stk.pop();
                 }
                 if(!stk.empty()) {
-                    methodCalls.add(new MethodCall(getRelativeFileName(stk.peek().getMethodName()), getRelativeFileName(logfileContent.getMethodName())));
+                    methodCalls.add(new MethodCall(getRelativeFileNameTest(stk.peek().getMethodName()), getRelativeFileNameTest(logfileContent.getMethodName())));
                 }
                 stk.push(logfileContent);
 
@@ -125,11 +177,15 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
         return String.join("|",key);
     }
 
-    private String getRelativeFileName(String methodName){
+    private String getRelativeFileNameTest(String methodName){
         String[] packageNameArray = methodName.split(" ");
         methodName = packageNameArray[packageNameArray.length-1];
         methodName = methodName.split("\\(")[0];
-        packageNameArray = methodName.split("\\.");
+        return getRelativeFileName(methodName);
+    }
+
+    private String getRelativeFileName(String methodName) {
+        String[] packageNameArray = methodName.split("\\.");
         int n = packageNameArray.length-1;
         List<String> pacageNameList = new ArrayList<>();
         for(int i=0; i<n; i++) {
@@ -137,6 +193,5 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
         }
         return String.join("/",pacageNameList)+".java";
     }
-
 
 }

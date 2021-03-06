@@ -1,5 +1,6 @@
 package ch.uzh.ifi.seal.monolith2microservices.services.decomposition;
 
+import ch.uzh.ifi.seal.monolith2microservices.graph.DynamicClusterer;
 import ch.uzh.ifi.seal.monolith2microservices.models.DecompositionParameters;
 import ch.uzh.ifi.seal.monolith2microservices.graph.LinearGraphCombination;
 import ch.uzh.ifi.seal.monolith2microservices.graph.MSTGraphClusterer;
@@ -131,8 +132,8 @@ public class DecompositionService {
 
             if(parameters.isDynamicCoupling()) {
                 // 两张图
-                components = MSTGraphClusterer.clusterWithSplit(couplings, parameters.getSizeThreshold(), parameters.getNumServices());
-
+//                components = MSTGraphClusterer.clusterWithSplit(couplings, parameters.getSizeThreshold(), parameters.getNumServices());
+                components = DynamicClusterer.clusterWithSplit(couplings, callingGraph);
             } else {
 
                 components = MSTGraphClusterer.clusterWithSplit(couplings, parameters.getSizeThreshold(), parameters.getNumServices());

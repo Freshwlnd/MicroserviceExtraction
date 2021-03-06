@@ -85,7 +85,6 @@ public class DynamicCouplingEngine {
         });
         RelationGraph = relationMap.values().stream().collect(Collectors.toList());
 
-
     }
 
     public List<DynamicCoupling> getRelationGraph(GitRepository repo) throws IOException {
