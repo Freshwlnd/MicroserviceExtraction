@@ -84,8 +84,16 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
 
     private LogfilePairContent transString2LogfilePairContent(String str) {
 
-        String[] infos = str.split(";");
-        return new LogfilePairContent(Integer.parseInt(infos[0]), Integer.parseInt(infos[1]), infos[2], infos[3], infos[4], infos[5], infos[6], infos[7], infos[8], infos[9], infos[10], Double.parseDouble(infos[11]));
+        // 直接分割无法将空字符串加入数组
+        List<String> infos = new ArrayList<>(Arrays.asList(str.split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)")));   // 双引号内的逗号不分割
+
+        while(infos.size()<12) {
+            infos.add("");
+        }
+        if(infos.get(11).equals("")) {
+            infos.set(11,"1");
+        }
+        return new LogfilePairContent(Integer.parseInt(infos.get(0)), Integer.parseInt(infos.get(1)), infos.get(2), infos.get(3), infos.get(4), infos.get(5), infos.get(6), infos.get(7), infos.get(8), infos.get(9), infos.get(10), Double.parseDouble(infos.get(11)));
 
     }
 

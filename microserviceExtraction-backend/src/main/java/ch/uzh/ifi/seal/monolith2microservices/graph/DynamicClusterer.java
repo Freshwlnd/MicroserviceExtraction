@@ -22,7 +22,7 @@ public final class DynamicClusterer {
         //empty on purpose
     }
 
-    public static Set<Component> clusterWithSplit(List<? extends BaseCoupling> RelationGraph, List<? extends BaseCoupling> CallingGraph) {
+    public static Set<Component> clusterWithSplit(List<? extends BaseCoupling> RelationGraph, List<? extends BaseCoupling> CallingGraph, Integer numOfMicroservices) {
 
         List<WeightedEdge> RelationMST = MinimumSpanningTree.of(RelationGraph).stream().collect(Collectors.toList());
         List<Component> components = ConnectedComponents.connectedComponents(RelationMST);
@@ -31,14 +31,14 @@ public final class DynamicClusterer {
 
         Boolean isChanged = true;
 
-        while(isChanged) {
+        while(isChanged && components.size()<numOfMicroservices) {
             isChanged = false;
 
             if(splitByMST(RelationGraph, RelationMST, components)) {
                 isChanged = true;
             }
 
-            if(splitCallingGraph(CallingGraph, components)) {
+            if(splitCallingGraph(CallingGraph, RelationMST, components)) {
                 isChanged = true;
             }
 
@@ -48,20 +48,57 @@ public final class DynamicClusterer {
 
     }
 
+    private static void pickUpOtherNodes(List<Component> newComponents, List<Component> components) {
+
+        Integer oldNodeNum = 0, newNodeNum = 0;
+        for(Component component: newComponents) {
+            newNodeNum += component.getSize();
+        }
+        for(Component component: components) {
+            oldNodeNum += component.getSize();
+        }
+
+        if(!newNodeNum.equals(oldNodeNum)) {
+
+            Set<String> newNodeSet = new HashSet<>();
+            for(Component component: newComponents) {
+                for(ClassNode node: component.getNodes()) {
+                    newNodeSet.add(node.getId());
+                }
+            }
+            for(Component component: components) {
+                for(ClassNode node: component.getNodes()) {
+                    if(!newNodeSet.contains(node.getId())) {
+                        Component c = new Component();
+                        c.addNode(new ClassNode(node.getId()));
+                        newComponents.add(c);
+                    }
+                }
+            }
+
+        }
+
+    }
+
     private static Boolean splitByMST(List<? extends BaseCoupling> RelationGraph, List<WeightedEdge> RelationMST, List<Component> components) {
 
+        if(RelationMST.isEmpty()) return false;
         List<WeightedEdge> newList = new ArrayList<>(RelationMST);
         Collections.sort(newList,weightedEdgeComparator);
         Collections.reverse(newList);
+        WeightedEdge deletedEdge = newList.get(0);
         newList.remove(0);
         List<Component> newComponents = ConnectedComponents.connectedComponents(newList);
+        pickUpOtherNodes(newComponents, components);   // 没有边的点无法被包入
 
         DynamicMetrics oldMet = evaluateRelationGraph(RelationGraph, components);
         DynamicMetrics nowMet = evaluateRelationGraph(RelationGraph, newComponents);
 
         if(RelationMetricsIsImproved(oldMet,nowMet)) {
-            RelationMST = newList;
-            components = newComponents;
+            RelationMST.clear();
+            RelationMST.addAll(newList);
+            components.clear();
+            components.addAll(newComponents);
             return true;
         }
 
@@ -99,60 +136,64 @@ public final class DynamicClusterer {
             }
         }
 
-        return new DynamicMetrics(Cohesion/CohesionNodeNum, Outcoupling/OutcouplingNodeNum);
+//        return new DynamicMetrics(CohesionNodeNum==0?0:Cohesion/CohesionNodeNum, OutcouplingNodeNum==0?0:Outcoupling/OutcouplingNodeNum);
+        return new DynamicMetrics(CohesionNodeNum==0?0:Cohesion/CohesionNodeNum, Outcoupling);
     }
 
     private static Boolean RelationMetricsIsImproved(DynamicMetrics x, DynamicMetrics y) {
         if(x.getCohesion()<=y.getCohesion() && x.getOutcoupling()>=y.getOutcoupling()) return true;
         else if(x.getCohesion()>=y.getCohesion() && x.getOutcoupling()<=y.getOutcoupling()) return false;
         else if(x.getCohesion()<=y.getCohesion()){  // 内聚度变高但外耦合度也变高
-            return (y.getCohesion()-x.getCohesion())/x.getCohesion() > (y.getOutcoupling()-x.getOutcoupling())/x.getOutcoupling();
+            return (x.getCohesion()==0?0:(y.getCohesion()-x.getCohesion())/x.getCohesion()) > (x.getOutcoupling()==0?0:(y.getOutcoupling()-x.getOutcoupling())/x.getOutcoupling());
         } else {// 外耦合度变低但内聚度也变低
-            return (x.getCohesion()-y.getCohesion())/x.getCohesion() < (x.getOutcoupling()-y.getOutcoupling())/x.getOutcoupling();
+            return (x.getCohesion()==0?0:(x.getCohesion()-y.getCohesion())/x.getCohesion()) < (x.getOutcoupling()==0?0:(x.getOutcoupling()-y.getOutcoupling())/x.getOutcoupling());
         }
     }
 
-    private static Boolean splitCallingGraph(List<? extends BaseCoupling> CallingGraph, List<Component> components) {
+    private static Boolean splitCallingGraph(List<? extends BaseCoupling> CallingGraph, List<WeightedEdge> RelationMST, List<Component> components) {
 
-        Boolean isChanged = false;
-
-        List<Component> newComs = new ArrayList<>();
+        List<WeightedEdge> newMST = new ArrayList<>(RelationMST);
 
         for(Component component : components) {
             List<String> inDeletedNodes = new ArrayList<>(), outDeletedNodes = new ArrayList<>();
             if(evaluateCallingGraph(CallingGraph, component, inDeletedNodes, outDeletedNodes)) {
-                isChanged = true;
-                List<ClassNode> nodes = component.getNodes();
-                DeleteFromCallingGraph(inDeletedNodes,nodes);
-                DeleteFromCallingGraph(outDeletedNodes,nodes);
-                newComs.addAll(ConnectedComponents.connectedComponentsFromNodes(nodes));
-            } else {
-                newComs.add(component);
+                DeleteFromCallingGraph(inDeletedNodes, newMST);
+                DeleteFromCallingGraph(outDeletedNodes, newMST);
             }
         }
 
-        components = newComs;
+        List<Component> newComs = new ArrayList<>(ConnectedComponents.connectedComponents(newMST));
+        pickUpOtherNodes(newComs, components);   // 没有边的点无法被包入
 
-        return isChanged;
+        if(newComs.size()>components.size()) {
+            components.clear();
+            components.addAll(newComs);
+            RelationMST.clear();
+            RelationMST.addAll(newMST);
+            return true;
+        }
+
+        return false;
 
     }
 
-    private static void DeleteFromCallingGraph(List<String> deletedNodes, List<ClassNode> nodes) {
+    private static void DeleteFromCallingGraph(List<String> deletedNodes, List<WeightedEdge> RelationMST) {
 
         if(deletedNodes.size() == 0) return;
         String rootNode = deletedNodes.get(0);
         deletedNodes.remove(0);
         Set<String> deletedNodesSet = new HashSet<>(deletedNodes);
 
-        nodes.forEach(classNode -> {
-            if(classNode.getId().equals(rootNode)) {
-                deletedNodes.forEach(node -> {
-                    classNode.deleteNeighborWithId(node);
-                });
-            } else if(deletedNodesSet.contains(classNode.getId())) {
-                classNode.deleteNeighborWithId(rootNode);
+        List<WeightedEdge> deleteEdges = new ArrayList<>();
+        for(WeightedEdge weightedEdge: RelationMST) {
+            if((weightedEdge.getFirstFileName().equals(rootNode) && deletedNodesSet.contains(weightedEdge.getSecondFileName())) ||
+                    (weightedEdge.getSecondFileName().equals(rootNode) && deletedNodesSet.contains(weightedEdge.getFirstFileName()))) {
+                deleteEdges.add(weightedEdge);
             }
-        });
+        }
+        for(WeightedEdge deleteEdge: deleteEdges) {
+            RelationMST.remove(deleteEdge);
+        }
 
     }
 
@@ -169,8 +210,8 @@ public final class DynamicClusterer {
             id2Str.put(nowId, node.getId());
             ++nowId;
         }
-        List<Double> inDegree = new ArrayList<>(nowId), outDegree = new ArrayList<>(nowId);
-        List<Double> flow = new ArrayList<>(nowId);
+        List<Double> inDegree = new ArrayList<>(Collections.nCopies(nowId,0.)), outDegree = new ArrayList<>(Collections.nCopies(nowId,0.));
+        List<Double> flow = new ArrayList<>(Collections.nCopies(nowId,0.));
 
         Double sumInDegree = 0., sumOutDegree = 0., sumFlow = 0.;
 
@@ -187,23 +228,23 @@ public final class DynamicClusterer {
             }
         }
 
-        sumInDegree = sumInDegree / nowId * choosedParameter;
-        sumOutDegree = sumOutDegree / nowId * choosedParameter;
-        sumFlow = sumFlow / nowId * choosedParameter;
+        Double InDegreeThreshold = sumInDegree / nowId * choosedParameter;
+        Double OutDegreeThreshold = sumOutDegree / nowId * choosedParameter;
+        Double FlowThreshold = sumFlow / nowId * choosedParameter;
 
 
         Integer biggestInNodeId = -1, biggestOutNodeId = -1;
         Double biggestInNodeVal = -1., biggestOutNodeVal = -1.;
         for(int i=0; i<nowId; i++) {
-            if(flow.get(i) >= sumFlow) {
-                if(inDegree.get(i) >= sumInDegree) {
+            if(flow.get(i) >= FlowThreshold) {
+                if(inDegree.get(i) >= InDegreeThreshold) {
                     Double nowVal = flow.get(i) * inDegree.get(i);
                     if(biggestInNodeId == -1 || biggestInNodeVal < nowVal) {
                         biggestInNodeId = i;
                         biggestInNodeVal = nowVal;
                     }
                 }
-                if(outDegree.get(i) >= sumOutDegree) {
+                if(outDegree.get(i) >= OutDegreeThreshold) {
                     Double nowVal = flow.get(i) * outDegree.get(i);
                     if(biggestOutNodeId == -1 || biggestOutNodeVal < nowVal) {
                         biggestOutNodeId = i;
@@ -216,7 +257,7 @@ public final class DynamicClusterer {
         if(biggestInNodeId != -1) {
             inDeletedNodes.add(id2Str.get(biggestInNodeId));
             for(BaseCoupling bc: CallingGraph) {
-                if(str2ID.get(bc.getSecondFileName()).equals(biggestInNodeId)) {
+                if(str2ID.containsKey(bc.getSecondFileName()) && str2ID.get(bc.getSecondFileName()).equals(biggestInNodeId)) {
                     inDeletedNodes.add(bc.getFirstFileName());
                 }
             }
@@ -225,7 +266,7 @@ public final class DynamicClusterer {
         if(biggestOutNodeId != -1) {
             outDeletedNodes.add(id2Str.get(biggestOutNodeId));
             for(BaseCoupling bc: CallingGraph) {
-                if(str2ID.get(bc.getFirstFileName()).equals(biggestOutNodeId)) {
+                if(str2ID.containsKey(bc.getFirstFileName()) && str2ID.get(bc.getFirstFileName()).equals(biggestOutNodeId)) {
                     inDeletedNodes.add(bc.getSecondFileName());
                 }
             }

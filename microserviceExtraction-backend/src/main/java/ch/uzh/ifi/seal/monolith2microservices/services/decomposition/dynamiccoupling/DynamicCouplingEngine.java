@@ -48,14 +48,16 @@ public class DynamicCouplingEngine {
         Map<String, DynamicCoupling> callingMap = new HashMap<>();
         methodCallContents.forEach(methodCallContent -> {
             methodCallContent.getContent().forEach(content -> {
-                String key = generateKeyFromFileNamesWithoutSort(content.getCallerMethodName(),content.getCalleeMethodName());
-                DynamicCoupling callingCoupling = callingMap.get(key);
-                if(callingCoupling == null) {
-                    callingCoupling = new DynamicCoupling(content.getCallerMethodName(),content.getCalleeMethodName(),1);
-                } else {
-                    callingCoupling.setScore(callingCoupling.getScore()+1);
+                if(!content.getCallerMethodName().equals(content.getCalleeMethodName())) {
+                    String key = generateKeyFromFileNamesWithoutSort(content.getCallerMethodName(), content.getCalleeMethodName());
+                    DynamicCoupling callingCoupling = callingMap.get(key);
+                    if (callingCoupling == null) {
+                        callingCoupling = new DynamicCoupling(content.getCallerMethodName(), content.getCalleeMethodName(), 1);
+                    } else {
+                        callingCoupling.setScore(callingCoupling.getScore() + 1);
+                    }
+                    callingMap.put(key, callingCoupling);
                 }
-                callingMap.put(key,callingCoupling);
             });
         });
         CallingGraph = callingMap.values().stream().collect(Collectors.toList());

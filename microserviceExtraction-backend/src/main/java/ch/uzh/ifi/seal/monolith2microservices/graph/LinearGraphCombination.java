@@ -86,7 +86,7 @@ public class LinearGraphCombination {
             double logicalWeight = t.getLogicalCoupling() == null ? 0 : this.logicalCouplingFactor * t.getLogicalCoupling().getScore();
             double semanticWeight = t.getSemanticCoupling() == null ? 0 : this.semanticCouplingFactor * t.getSemanticCoupling().getScore();
             double contributorWeight = t.getContributorCoupling() == null ? 0 : this.contributorCouplingFactor* t.getContributorCoupling().getScore();
-            double dynamicWeight = t.getContributorCoupling() == null ? 0 : this.dynamicCouplingFactor* t.getDynamicCoupling().getScore();
+            double dynamicWeight = t.getDynamicCoupling() == null ? 0 : this.dynamicCouplingFactor* t.getDynamicCoupling().getScore();
             double combinedWeight = logicalWeight + semanticWeight + contributorWeight + dynamicWeight;
             BaseCoupling coupling = new BaseCoupling(t.getFirstFile(), t.getSecondFile(),combinedWeight);
             couplings.add(coupling);

@@ -131,9 +131,10 @@ public class DecompositionService {
             Set<Component> components;
 
             if(parameters.isDynamicCoupling()) {
+
                 // 两张图
-//                components = MSTGraphClusterer.clusterWithSplit(couplings, parameters.getSizeThreshold(), parameters.getNumServices());
-                components = DynamicClusterer.clusterWithSplit(couplings, callingGraph);
+                components = DynamicClusterer.clusterWithSplit(couplings, callingGraph, parameters.getNumServices());
+
             } else {
 
                 components = MSTGraphClusterer.clusterWithSplit(couplings, parameters.getSizeThreshold(), parameters.getNumServices());
