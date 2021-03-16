@@ -1,20 +1,14 @@
 package ch.uzh.ifi.seal.monolith2microservices.services.decomposition.dynamiccoupling;
 
 import ch.uzh.ifi.seal.monolith2microservices.main.Configs;
-import ch.uzh.ifi.seal.monolith2microservices.models.ClassContent;
 import ch.uzh.ifi.seal.monolith2microservices.models.MethodCallContent;
 import ch.uzh.ifi.seal.monolith2microservices.models.couplings.DynamicCoupling;
-import ch.uzh.ifi.seal.monolith2microservices.models.couplings.SemanticCoupling;
 import ch.uzh.ifi.seal.monolith2microservices.models.git.GitRepository;
-import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.semanticcoupling.classprocessing.ClassContentVisitor;
-import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.semanticcoupling.tfidf.TfIdfWrapper;
-import ch.uzh.ifi.seal.monolith2microservices.utils.ClassContentFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,12 +18,15 @@ public class DynamicCouplingEngine {
     @Autowired
     private Configs config;
 
+    GitRepository Repository;
+
     List<DynamicCoupling> CallingGraph;
 
     List<DynamicCoupling> RelationGraph;
 
     private void computeCouplings(GitRepository repo) throws IOException{
 
+        Repository = repo;
         CallingGraph = new ArrayList<>();
         RelationGraph = new ArrayList<>();
 
@@ -90,12 +87,12 @@ public class DynamicCouplingEngine {
     }
 
     public List<DynamicCoupling> getRelationGraph(GitRepository repo) throws IOException {
-        if(RelationGraph == null) computeCouplings(repo);
+        if(RelationGraph == null || !Repository.equals(repo)) computeCouplings(repo);
         return RelationGraph;
     }
 
     public List<DynamicCoupling> getCallingGraph(GitRepository repo) throws IOException {
-        if(CallingGraph == null) computeCouplings(repo);
+        if(CallingGraph == null || !Repository.equals(repo)) computeCouplings(repo);
         return CallingGraph;
     }
 
