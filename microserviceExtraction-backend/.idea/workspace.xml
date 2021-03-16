@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6e03b6cd-eeb4-425c-9199-b2be225fd216" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java" afterDir="false" />
-    </list>
+    <list default="true" id="6e03b6cd-eeb4-425c-9199-b2be225fd216" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +15,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -27,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-260">
-              <caret line="29" column="37" lean-forward="true" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+            <state relative-caret-position="285">
+              <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#DynamicClusterer#0;class#DynamicClusterer#0" />
@@ -50,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="201" column="42" lean-forward="true" selection-start-line="201" selection-start-column="37" selection-end-line="201" selection-end-column="53" />
+            <state relative-caret-position="2580">
+              <caret line="201" column="42" selection-start-line="201" selection-start-column="37" selection-end-line="201" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -158,7 +154,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -250,6 +245,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -308,17 +304,17 @@
       <workItem from="1615465848645" duration="24589000" />
       <workItem from="1615770710092" duration="21984000" />
       <workItem from="1615864905806" duration="83000" />
+      <workItem from="1615901377654" duration="259000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103549000" />
+    <option name="totallyTimeSpent" value="103808000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="499" y="23" width="941" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19243604" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19688542" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -328,7 +324,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49705014" weight="0.3299363" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49705014" visible="true" weight="0.3299363" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -345,7 +341,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.32996324" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.32925472" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" />
@@ -741,14 +737,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-260">
-          <caret line="29" column="37" lean-forward="true" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+        <state relative-caret-position="285">
+          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#DynamicClusterer#0;class#DynamicClusterer#0" />
@@ -768,8 +764,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="201" column="42" lean-forward="true" selection-start-line="201" selection-start-column="37" selection-end-line="201" selection-end-column="53" />
+        <state relative-caret-position="2580">
+          <caret line="201" column="42" selection-start-line="201" selection-start-column="37" selection-end-line="201" selection-end-column="53" />
         </state>
       </provider>
     </entry>
