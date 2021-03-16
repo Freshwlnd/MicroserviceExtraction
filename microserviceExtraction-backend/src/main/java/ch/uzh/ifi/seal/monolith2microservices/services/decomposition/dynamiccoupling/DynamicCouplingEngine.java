@@ -24,7 +24,7 @@ public class DynamicCouplingEngine {
 
     List<DynamicCoupling> RelationGraph;
 
-    private void computeCouplings(GitRepository repo) throws IOException{
+    private void computeCouplings(GitRepository repo) throws IOException {
 
         Repository = repo;
         CallingGraph = new ArrayList<>();
@@ -45,7 +45,7 @@ public class DynamicCouplingEngine {
         Map<String, DynamicCoupling> callingMap = new HashMap<>();
         methodCallContents.forEach(methodCallContent -> {
             methodCallContent.getContent().forEach(content -> {
-                if(!content.getCallerMethodName().equals(content.getCalleeMethodName())) {
+                if (!content.getCallerMethodName().equals(content.getCalleeMethodName())) {
                     String key = generateKeyFromFileNamesWithoutSort(content.getCallerMethodName(), content.getCalleeMethodName());
                     DynamicCoupling callingCoupling = callingMap.get(key);
                     if (callingCoupling == null) {
@@ -69,15 +69,15 @@ public class DynamicCouplingEngine {
             });
             Methods.forEach(a -> {
                 Methods.forEach(b -> {
-                    if(!a.equals(b)) {
-                        String key = generateKeyFromFileNames(a,b);
+                    if (!a.equals(b)) {
+                        String key = generateKeyFromFileNames(a, b);
                         DynamicCoupling relationCoupling = relationMap.get(key);
-                        if(relationCoupling == null) {
+                        if (relationCoupling == null) {
                             relationCoupling = new DynamicCoupling(a, b, 1);
                         } else {
                             relationCoupling.setScore(relationCoupling.getScore() + 1);
                         }
-                        relationMap.put(key,relationCoupling);
+                        relationMap.put(key, relationCoupling);
                     }
                 });
             });
@@ -87,12 +87,12 @@ public class DynamicCouplingEngine {
     }
 
     public List<DynamicCoupling> getRelationGraph(GitRepository repo) throws IOException {
-        if(RelationGraph == null || !Repository.equals(repo)) computeCouplings(repo);
+        if (RelationGraph == null || !Repository.equals(repo)) computeCouplings(repo);
         return RelationGraph;
     }
 
     public List<DynamicCoupling> getCallingGraph(GitRepository repo) throws IOException {
-        if(CallingGraph == null || !Repository.equals(repo)) computeCouplings(repo);
+        if (CallingGraph == null || !Repository.equals(repo)) computeCouplings(repo);
         return CallingGraph;
     }
 

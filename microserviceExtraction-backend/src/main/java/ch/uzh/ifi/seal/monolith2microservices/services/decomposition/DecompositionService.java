@@ -69,7 +69,7 @@ public class DecompositionService {
     @Autowired
     MicroserviceEvaluationService microserviceEvaluationService;
 
-    public Decomposition decompose(GitRepository repository, DecompositionParameters parameters){
+    public Decomposition decompose(GitRepository repository, DecompositionParameters parameters) {
 
         try {
 
@@ -85,7 +85,7 @@ public class DecompositionService {
 
             long strategyStartTimestamp = System.currentTimeMillis();
 
-            if(parameters.isDynamicCoupling()) {
+            if (parameters.isDynamicCoupling()) {
 
                 callingGraph = LinearGraphCombination.create().setNeedSort(false).withDynamicCouplings(computeDynamicCallingCouplings(repository)).generate();
 
@@ -130,7 +130,7 @@ public class DecompositionService {
 
             Set<Component> components;
 
-            if(parameters.isDynamicCoupling()) {
+            if (parameters.isDynamicCoupling()) {
 
                 // 两张图
                 components = DynamicClusterer.clusterWithSplit(couplings, callingGraph, parameters.getNumServices());
@@ -171,7 +171,7 @@ public class DecompositionService {
 
             return decomposition;
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             logger.error(e.getMessage());
             Decomposition emptyDecomposition = new Decomposition();
@@ -181,28 +181,28 @@ public class DecompositionService {
         }
     }
 
-    private List<ChangeEvent> computeHistory(GitRepository repo) throws Exception{
+    private List<ChangeEvent> computeHistory(GitRepository repo) throws Exception {
         List<ChangeEvent> history = historyService.computeChangeEvents(repo);
         return historyService.cleanHistory(history);
     }
 
-    private List<ContributorCoupling> computeContributorCouplings(List<ChangeEvent> history) throws Exception{
+    private List<ContributorCoupling> computeContributorCouplings(List<ChangeEvent> history) throws Exception {
         return contributorCouplingEngine.computeCouplings(history);
     }
 
-    private List<SemanticCoupling> computeSemanticCouplings(GitRepository repository) throws IOException{
+    private List<SemanticCoupling> computeSemanticCouplings(GitRepository repository) throws IOException {
         return semanticCouplingEngine.computeCouplings(repository);
     }
 
-    private List<LogicalCoupling> computeLogicalCouplings(List<ChangeEvent> history, DecompositionParameters parameters) throws Exception{
+    private List<LogicalCoupling> computeLogicalCouplings(List<ChangeEvent> history, DecompositionParameters parameters) throws Exception {
         return logicalCouplingEngine.computeCouplings(history, parameters.getIntervalSeconds());
     }
 
-    private List<DynamicCoupling> computeDynamicRelationCouplings(GitRepository repository) throws IOException{
+    private List<DynamicCoupling> computeDynamicRelationCouplings(GitRepository repository) throws IOException {
         return dynamicCouplingEngine.getRelationGraph(repository);
     }
 
-    private List<DynamicCoupling> computeDynamicCallingCouplings(GitRepository repository) throws IOException{
+    private List<DynamicCoupling> computeDynamicCallingCouplings(GitRepository repository) throws IOException {
         return dynamicCouplingEngine.getCallingGraph(repository);
     }
 
