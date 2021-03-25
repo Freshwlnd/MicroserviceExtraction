@@ -85,44 +85,62 @@ public class DecompositionService {
 
             long strategyStartTimestamp = System.currentTimeMillis();
 
+            LinearGraphCombination lgc = LinearGraphCombination.create();
+
+            if (parameters.isLogicalCoupling()) {
+                lgc = lgc.withLogicalCouplings(computeLogicalCouplings(history, parameters));
+            }
+            if (parameters.isSemanticCoupling()) {
+
+                lgc = lgc.withSemanticCouplings(computeSemanticCouplings(repository));
+
+            }
+            if (parameters.isContributorCoupling()) {
+                lgc = lgc.withContributorCouplings(computeContributorCouplings(history));
+            }
             if (parameters.isDynamicCoupling()) {
+                lgc = lgc.withDynamicCouplings(computeDynamicRelationCouplings(repository));
+            }
+
+            couplings = lgc.generate();
+
+            if(parameters.isDynamicCoupling()) {
 
                 callingGraph = LinearGraphCombination.create().setNeedSort(false).withDynamicCouplings(computeDynamicCallingCouplings(repository)).generate();
 
-                couplings = LinearGraphCombination.create().setNeedSort(true).withDynamicCouplings(computeDynamicRelationCouplings(repository)).generate();
-
-            } else if (parameters.isLogicalCoupling() && parameters.isSemanticCoupling() && parameters.isContributorCoupling()) {
-
-                couplings = LinearGraphCombination.create().withLogicalCouplings(computeLogicalCouplings(history, parameters))
-                        .withSemanticCouplings(computeSemanticCouplings(repository))
-                        .withContributorCouplings(computeContributorCouplings(history)).generate();
-
-            } else if (parameters.isLogicalCoupling() && parameters.isSemanticCoupling()) {
-
-                couplings = LinearGraphCombination.create().withLogicalCouplings(computeLogicalCouplings(history, parameters))
-                        .withSemanticCouplings(computeSemanticCouplings(repository)).generate();
-
-            } else if (parameters.isLogicalCoupling() && parameters.isContributorCoupling()) {
-
-                couplings = LinearGraphCombination.create().withLogicalCouplings(computeLogicalCouplings(history, parameters))
-                        .withContributorCouplings(computeContributorCouplings(history)).generate();
-
-            } else if (parameters.isContributorCoupling() && parameters.isSemanticCoupling()) {
-
-                couplings = LinearGraphCombination.create().withContributorCouplings(computeContributorCouplings(history))
-                        .withSemanticCouplings(computeSemanticCouplings(repository)).generate();
-
-            } else if (parameters.isLogicalCoupling()) {
-
-                couplings = LinearGraphCombination.create().withLogicalCouplings(computeLogicalCouplings(history, parameters)).generate();
-
-            } else if (parameters.isSemanticCoupling()) {
-
-                couplings = LinearGraphCombination.create().withSemanticCouplings(computeSemanticCouplings(repository)).generate();
-
-            } else if (parameters.isContributorCoupling()) {
-                couplings = LinearGraphCombination.create().withContributorCouplings(computeContributorCouplings(history)).generate();
             }
+//            else if (parameters.isLogicalCoupling() && parameters.isSemanticCoupling() && parameters.isContributorCoupling()) {
+//
+//                couplings = LinearGraphCombination.create().withLogicalCouplings(computeLogicalCouplings(history, parameters))
+//                        .withSemanticCouplings(computeSemanticCouplings(repository))
+//                        .withContributorCouplings(computeContributorCouplings(history)).generate();
+//
+//            } else if (parameters.isLogicalCoupling() && parameters.isSemanticCoupling()) {
+//
+//                couplings = LinearGraphCombination.create().withLogicalCouplings(computeLogicalCouplings(history, parameters))
+//                        .withSemanticCouplings(computeSemanticCouplings(repository)).generate();
+//
+//            } else if (parameters.isLogicalCoupling() && parameters.isContributorCoupling()) {
+//
+//                couplings = LinearGraphCombination.create().withLogicalCouplings(computeLogicalCouplings(history, parameters))
+//                        .withContributorCouplings(computeContributorCouplings(history)).generate();
+//
+//            } else if (parameters.isContributorCoupling() && parameters.isSemanticCoupling()) {
+//
+//                couplings = LinearGraphCombination.create().withContributorCouplings(computeContributorCouplings(history))
+//                        .withSemanticCouplings(computeSemanticCouplings(repository)).generate();
+//
+//            } else if (parameters.isLogicalCoupling()) {
+//
+//                couplings = LinearGraphCombination.create().withLogicalCouplings(computeLogicalCouplings(history, parameters)).generate();
+//
+//            } else if (parameters.isSemanticCoupling()) {
+//
+//                couplings = LinearGraphCombination.create().withSemanticCouplings(computeSemanticCouplings(repository)).generate();
+//
+//            } else if (parameters.isContributorCoupling()) {
+//                couplings = LinearGraphCombination.create().withContributorCouplings(computeContributorCouplings(history)).generate();
+//            }
 
             long strategyExecutionTimeMillis = System.currentTimeMillis() - strategyStartTimestamp;
 
