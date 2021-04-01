@@ -28,7 +28,7 @@ public class SemanticCouplingEngine {
         List<SemanticCoupling> couplings = new ArrayList<>();
 
         //Read class files (content) from repo
-        String localRepoPath = config.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId();
+        String localRepoPath = config.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId() + "/src/main/java";
 
         Path repoDirectory = Paths.get(localRepoPath);
 

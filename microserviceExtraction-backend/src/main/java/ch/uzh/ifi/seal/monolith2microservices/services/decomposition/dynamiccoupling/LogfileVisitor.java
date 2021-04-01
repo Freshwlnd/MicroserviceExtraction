@@ -93,7 +93,7 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
         if(infos.get(11).equals("")) {
             infos.set(11,"1");
         }
-        return new LogfilePairContent(Integer.parseInt(infos.get(0)), Integer.parseInt(infos.get(1)), infos.get(2), infos.get(3), infos.get(4), infos.get(5), infos.get(6), infos.get(7), infos.get(8), infos.get(9), infos.get(10), Double.parseDouble(infos.get(11)));
+        return new LogfilePairContent(Integer.parseInt(infos.get(0)), Integer.parseInt(infos.get(1)), infos.get(2), "src/main/java/" + infos.get(3), "src/main/java/" + infos.get(4), infos.get(5), infos.get(6), infos.get(7), infos.get(8), infos.get(9), infos.get(10), Double.parseDouble(infos.get(11)));
 
     }
 
