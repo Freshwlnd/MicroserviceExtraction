@@ -28,31 +28,56 @@ public class MicroserviceSimilarityService {
 
     FilterInterface filterInterface = new ClassContentFilter();
 
-    public double computeServiceSimilarity(GitRepository repo, Component firstMicroservice, Component secondMicroservice) throws IOException{
+    public double computeServiceSimilarity(GitRepository repo, Component firstMicroservice, Component secondMicroservice) throws IOException {
         List<String> firstServiceContent = computeTokenizedServiceContent(repo, firstMicroservice);
         List<String> secondServiceContent = computeTokenizedServiceContent(repo, secondMicroservice);
         return TfIdfWrapper.computeSimilarity(firstServiceContent, secondServiceContent);
     }
 
+    public double computeEveryServiceSimilarity(GitRepository repo, Component microservice) throws IOException {
 
-    private List<String> computeTokenizedServiceContent(GitRepository repo, Component microservice) throws IOException{
+        String pathPrefix = configs.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId();
+
+        List<String> FilePaths = microservice.getFilePaths();
+        List<List<String>> contents = new ArrayList<>();
+        for (String filePath : FilePaths) {
+            String rawContent = getRawFileContent(Paths.get(pathPrefix + "/" + filePath));
+            contents.add(filterInterface.filterFileContent(rawContent));
+        }
+
+        double sumSim = 0;
+
+        for (int i = 0; i < contents.size(); i++) {
+            for (int j = 0; j < contents.size(); j++) {
+                if (i == j) continue;
+
+                sumSim += TfIdfWrapper.computeSimilarity(contents.get(i), contents.get(j));
+
+            }
+        }
+
+        return sumSim / contents.size();
+    }
+
+
+    private List<String> computeTokenizedServiceContent(GitRepository repo, Component microservice) throws IOException {
         List<String> filePaths = microservice.getFilePaths();
         String pathPrefix = configs.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId();
 
         List<String> content = new ArrayList<>();
 
-        for(String filePath: filePaths){
+        for (String filePath : filePaths) {
             String rawContent = getRawFileContent(Paths.get(pathPrefix + "/" + filePath));
             content.addAll(filterInterface.filterFileContent(rawContent));
         }
         return content;
     }
 
-    private String getRawFileContent(Path path) throws IOException{
+    private String getRawFileContent(Path path) throws IOException {
         BufferedReader reader = Files.newBufferedReader(path);
         String line;
         StringBuilder sb = new StringBuilder();
-        while((line = reader.readLine())!= null){
+        while ((line = reader.readLine()) != null) {
             sb.append(line);
         }
         reader.close();

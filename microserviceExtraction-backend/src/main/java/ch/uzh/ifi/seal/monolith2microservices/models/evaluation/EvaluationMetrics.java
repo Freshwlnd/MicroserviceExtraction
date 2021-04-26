@@ -15,7 +15,7 @@ public class EvaluationMetrics {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne(cascade={CascadeType.REMOVE})
+    @OneToOne(cascade = {CascadeType.REMOVE})
     private Decomposition decomposition;
 
     private double contributorsPerMicroservice;
@@ -28,15 +28,21 @@ public class EvaluationMetrics {
 
     private double similarity;
 
+    private double similarityCohesion;
+
+    private double dynamicCohesion;
+
+    private double dynamicCoupling;
+
     private long executionTimeMillisStrategy;
 
     private long executionTimeMillisClustering;
 
-    public long getId(){
+    public long getId() {
         return this.id;
     }
 
-    public void setId(long id){
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -88,6 +94,30 @@ public class EvaluationMetrics {
         this.similarity = similarity;
     }
 
+    public double getSimilarityCohesion() {
+        return similarityCohesion;
+    }
+
+    public void setSimilarityCohesion(double similarityCohesion) {
+        this.similarityCohesion = similarityCohesion;
+    }
+
+    public double getDynamicCohesion() {
+        return dynamicCohesion;
+    }
+
+    public void setDynamicCohesion(double dynamicCohesion) {
+        this.dynamicCohesion = dynamicCohesion;
+    }
+
+    public double getDynamicCoupling() {
+        return dynamicCoupling;
+    }
+
+    public void setDynamicCoupling(double dynamicCoupling) {
+        this.dynamicCoupling = dynamicCoupling;
+    }
+
     public long getExecutionTimeMillisStrategy() {
         return executionTimeMillisStrategy;
     }
@@ -114,6 +144,9 @@ public class EvaluationMetrics {
                 ", averageLoc=" + averageLoc +
                 ", averageClassNumber=" + averageClassNumber +
                 ", similarity=" + similarity +
+                ", similarityCohesion=" + similarityCohesion +
+                ", dynamicCohesion=" + dynamicCohesion +
+                ", dynamicCoupling=" + dynamicCoupling +
                 ", executionTimeMillisStrategy=" + executionTimeMillisStrategy +
                 ", executionTimeMillisClustering=" + executionTimeMillisClustering +
                 '}';

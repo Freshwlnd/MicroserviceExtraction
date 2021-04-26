@@ -35,8 +35,11 @@ public class DecompositionEvaluationService {
     @Autowired
     MicroserviceSimilarityService similarityService;
 
+    @Autowired
+    DynamicEvaluationService dynamicEvaluationService;
 
-    public EvaluationMetrics computeMetrics(Decomposition decomposition, List<MicroserviceMetrics> microserviceMetrics) throws IOException{
+
+    public EvaluationMetrics computeMetrics(Decomposition decomposition, List<MicroserviceMetrics> microserviceMetrics) throws IOException {
         EvaluationMetrics metrics = new EvaluationMetrics();
         metrics.setDecomposition(decomposition);
         metrics.setContributorsPerMicroservice(computeContributorPerMicroservice(microserviceMetrics));
@@ -44,51 +47,97 @@ public class DecompositionEvaluationService {
         metrics.setAverageLoc(computeAverageLoc(microserviceMetrics));
         metrics.setAverageClassNumber(computeMicroserviceSizeClasses(microserviceMetrics));
         metrics.setSimilarity(computeServiceSimilarity(decomposition));
+        metrics.setSimilarityCohesion(computeServiceSimilarityCohesion(decomposition));
+        metrics.setDynamicCohesion(computeDynamicCohesion(decomposition));
+        metrics.setDynamicCoupling(computeDynamicCoupling(decomposition));
         metrics.setExecutionTimeMillisClustering(decomposition.getClusteringTime());
         metrics.setExecutionTimeMillisStrategy(decomposition.getStrategyTime());
         return metrics;
     }
 
-    private double computeContributorPerMicroservice(List<MicroserviceMetrics> microserviceMetrics){
+    private double computeContributorPerMicroservice(List<MicroserviceMetrics> microserviceMetrics) {
         return microserviceMetrics.stream().map(metric -> metric.getNumOfContributors()).mapToDouble(Double::doubleValue).sum() / microserviceMetrics.size();
     }
 
-    private double computeContributorOverlapping(List<MicroserviceMetrics> microserviceMetrics){
+    private double computeContributorOverlapping(List<MicroserviceMetrics> microserviceMetrics) {
         List<Double> overlappingContributors = new ArrayList<>();
-        microserviceMetrics.forEach( firstServiceMetric -> {
-            microserviceMetrics.forEach( secondServiceMetric -> {
+        microserviceMetrics.forEach(firstServiceMetric -> {
+            microserviceMetrics.forEach(secondServiceMetric -> {
                 overlappingContributors.add((double) getNumberOfOverlappingContributors(firstServiceMetric.getContributors(), secondServiceMetric.getContributors()));
             });
         });
         return overlappingContributors.stream().mapToDouble(Double::doubleValue).sum() / overlappingContributors.size();
     }
 
-    private double computeAverageLoc(List<MicroserviceMetrics> microserviceMetrics){
+    private double computeAverageLoc(List<MicroserviceMetrics> microserviceMetrics) {
         return microserviceMetrics.stream().map(metric -> (double) metric.getSizeInLoc()).mapToDouble(Double::doubleValue).sum() / microserviceMetrics.size();
     }
 
-    private double computeMicroserviceSizeClasses(List<MicroserviceMetrics> microserviceMetrics){
+    private double computeMicroserviceSizeClasses(List<MicroserviceMetrics> microserviceMetrics) {
         return microserviceMetrics.stream().map(metric -> (double) metric.getSizeInClasses()).mapToDouble(Double::doubleValue).sum() / microserviceMetrics.size();
     }
 
-    private double computeServiceSimilarity(Decomposition decomposition) throws IOException{
-        if(decomposition.getServices().size() > 1){
+    private double computeServiceSimilarity(Decomposition decomposition) throws IOException {
+        if (decomposition.getServices().size() > 1) {
             List<Double> similarities = new ArrayList<>();
-            for(Component firstService :  decomposition.getServices()){
-                for(Component secondService: decomposition.getServices()){
-                    if(firstService.getId() != secondService.getId()){
-                        similarities.add(similarityService.computeServiceSimilarity(decomposition.getRepository(),firstService,secondService));
+            for (Component firstService : decomposition.getServices()) {
+                for (Component secondService : decomposition.getServices()) {
+                    if (firstService.getId() != secondService.getId()) {
+                        similarities.add(similarityService.computeServiceSimilarity(decomposition.getRepository(), firstService, secondService));
                     }
                 }
             }
             return similarities.stream().mapToDouble(Double::doubleValue).sum() / similarities.size();
-        }else{
+        } else {
             return 1d;
         }
     }
 
+    private double computeServiceSimilarityCohesion(Decomposition decomposition) throws IOException {
 
-    public int getNumberOfOverlappingContributors(Set<String> firstSet, Set<String> secondSet){
+        List<Double> simCoh = new ArrayList<>();
+
+        for (Component service : decomposition.getServices()) {
+            simCoh.add(similarityService.computeEveryServiceSimilarity(decomposition.getRepository(), service));
+        }
+
+        return simCoh.stream().mapToDouble(Double::doubleValue).sum() / simCoh.size();
+
+    }
+
+    private double computeDynamicCohesion(Decomposition decomposition) throws IOException {
+
+        List<Double> cohesion = new ArrayList<>();
+
+        for (Component service : decomposition.getServices()) {
+            cohesion.add(dynamicEvaluationService.computeEveryMicroserviceDynamic(decomposition.getRepository(), service));
+        }
+
+        return cohesion.stream().mapToDouble(Double::doubleValue).sum() / cohesion.size();
+
+    }
+
+    private double computeDynamicCoupling(Decomposition decomposition) throws IOException {
+
+        if (decomposition.getServices().size() > 1) {
+
+            List<Double> couplings = new ArrayList<>();
+            for (Component firstService : decomposition.getServices()) {
+                for (Component secondService : decomposition.getServices()) {
+                    if (firstService.getId() != secondService.getId()) {
+                        couplings.add(dynamicEvaluationService.computeDynamicCoupling(decomposition.getRepository(), firstService, secondService));
+                    }
+                }
+            }
+            return couplings.stream().mapToDouble(Double::doubleValue).sum() / couplings.size();
+
+        } else {
+            return 1d;
+        }
+
+    }
+
+    public int getNumberOfOverlappingContributors(Set<String> firstSet, Set<String> secondSet) {
         Set<String> intersection = new HashSet<>(firstSet);
         intersection.retainAll(secondSet);
         return intersection.size();
