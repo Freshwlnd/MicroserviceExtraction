@@ -19,37 +19,37 @@ import java.util.stream.Collectors;
 public final class ConnectedComponents {
 
 
-    private ConnectedComponents(){
+    private ConnectedComponents() {
         //empty on purpose
     }
 
-    public static List<Component> connectedComponentsFromNodes(List<ClassNode> nodes){
+    public static List<Component> connectedComponentsFromNodes(List<ClassNode> nodes) {
         return performDfs(nodes);
     }
 
-    public static List<Component> connectedComponents(List<WeightedEdge> edgeList){
+    public static List<Component> connectedComponents(List<WeightedEdge> edgeList) {
         List<ClassNode> nodes = convertEdgeListToNodeList(edgeList);
         return performDfs(nodes);
     }
 
-    public static int numberOfComponents(List<WeightedEdge> edgeList){
-        return (int)  connectedComponents(edgeList).stream().filter(singleNodeFilter).count();
+    public static int numberOfComponents(List<WeightedEdge> edgeList) {
+        return (int) connectedComponents(edgeList).stream().filter(singleNodeFilter).count();
     }
 
 
     private static Predicate<Component> singleNodeFilter = (component) -> {
-        if(component.getNodes().size() < 2){
+        if (component.getNodes().size() < 1) {
             return false;
-        }else{
+        } else {
             return true;
         }
     };
 
-    public static List<ClassNode> convertEdgeListToNodeList(List<WeightedEdge> edgeList){
+    public static List<ClassNode> convertEdgeListToNodeList(List<WeightedEdge> edgeList) {
 
-        Map<String,ClassNode> nodeMap = new HashMap<>();
+        Map<String, ClassNode> nodeMap = new HashMap<>();
 
-        for(WeightedEdge edge: edgeList){
+        for (WeightedEdge edge : edgeList) {
 
             String firstFileName = edge.getFirstFileName();
             String secondFileName = edge.getSecondFileName();
@@ -58,19 +58,19 @@ public final class ConnectedComponents {
 
             ClassNode firstNode, secondNode;
 
-            if((firstNode = nodeMap.get(firstFileName)) == null){
+            if ((firstNode = nodeMap.get(firstFileName)) == null) {
                 //create node for first file in pair
                 firstNode = new ClassNode(firstFileName);
 
             }
-            if ((secondNode = nodeMap.get(secondFileName)) == null){
+            if ((secondNode = nodeMap.get(secondFileName)) == null) {
                 //create node for the second file in the pair
                 secondNode = new ClassNode(secondFileName);
             }
 
             //link both nodes together as new neighbors with their score
-            firstNode.addNeighborWithWeight(secondNode,score);
-            secondNode.addNeighborWithWeight(firstNode,score);
+            firstNode.addNeighborWithWeight(secondNode, score);
+            secondNode.addNeighborWithWeight(firstNode, score);
 
             nodeMap.put(firstFileName, firstNode);
             nodeMap.put(secondFileName, secondNode);
@@ -80,16 +80,16 @@ public final class ConnectedComponents {
         return nodeMap.values().stream().collect(Collectors.toList());
     }
 
-    private static List<Component> performDfs(List<ClassNode> nodes){
+    private static List<Component> performDfs(List<ClassNode> nodes) {
         nodes.forEach(n -> n.setVisited(false));
         List<Component> components = new ArrayList<>();
-        for(ClassNode node : nodes){
-            if(!node.isVisited()){
+        for (ClassNode node : nodes) {
+            if (!node.isVisited()) {
                 node.setVisited(true);
                 Component c = new Component();
                 c.setVisited(true);
                 c.addNode(node);
-                dfs(node,c);
+                dfs(node, c);
                 components.add(c);
             }
         }
@@ -97,9 +97,9 @@ public final class ConnectedComponents {
     }
 
 
-    private static void dfs(ClassNode node, Component component){
-        for(NodeWeightPair neighbor : node.getNeighbors()){
-            if(!neighbor.getNode().isVisited()){
+    private static void dfs(ClassNode node, Component component) {
+        for (NodeWeightPair neighbor : node.getNeighbors()) {
+            if (!neighbor.getNode().isVisited()) {
                 neighbor.getNode().setVisited(true);
                 component.addNode(neighbor.getNode());
                 dfs(neighbor.getNode(), component);

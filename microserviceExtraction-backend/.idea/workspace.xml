@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e03b6cd-eeb4-425c-9199-b2be225fd216" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DynamicEvaluationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/evaluation/EvaluationMetrics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/evaluation/EvaluationMetrics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/MetricsExportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/MetricsExportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DecompositionEvaluationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DecompositionEvaluationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/ConnectedComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/ConnectedComponents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,64 +31,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/ExportController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="33" column="28" selection-end-line="87" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/DecompositionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="453">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/ConnectedComponents.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="65" column="9" selection-end-line="110" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/MetricsExportService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="98" selection-start-line="98" selection-end-line="98" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DecompositionEvaluationService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="120" selection-end-line="145" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/reporting/TextFileReport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DynamicEvaluationService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="3" selection-end-line="76" />
+            <state relative-caret-position="348">
+              <caret line="101" column="22" selection-end-line="189" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -125,6 +87,8 @@
       <find>getRelativeFileNameTest</find>
       <find>getRelativeFileName</find>
       <find>isTest</find>
+      <find>&gt; 1</find>
+      <find>getClassName</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers</dir>
@@ -145,7 +109,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/ExportController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCall.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCallContent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/evaluation/DynamicMetrics.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/LogfileContent.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/git/Class.java" />
@@ -168,6 +131,8 @@
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/MetricsExportService.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DynamicEvaluationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/ConnectedComponents.java" />
       </list>
     </option>
   </component>
@@ -189,7 +154,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="977" />
+    <option name="width" value="720" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -198,8 +163,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -249,68 +212,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="monolith2microservices" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="conjoined-change" type="b2602c69:ProjectViewProjectNode" />
-              <item name="microserviceExtraction-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="monolith2microservices" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="decomposition" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="conjoined-change" type="b2602c69:ProjectViewProjectNode" />
-              <item name="microserviceExtraction-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="monolith2microservices" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="decomposition" type="462c0819:PsiDirectoryNode" />
-              <item name="dynamiccoupling" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="conjoined-change" type="b2602c69:ProjectViewProjectNode" />
-              <item name="microserviceExtraction-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="monolith2microservices" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="decomposition" type="462c0819:PsiDirectoryNode" />
-              <item name="semanticcoupling" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="conjoined-change" type="b2602c69:ProjectViewProjectNode" />
-              <item name="microserviceExtraction-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="monolith2microservices" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="evaluation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="conjoined-change" type="b2602c69:ProjectViewProjectNode" />
-              <item name="microserviceExtraction-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="monolith2microservices" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="conjoined-change" type="b2602c69:ProjectViewProjectNode" />
-              <item name="microserviceExtraction-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="monolith2microservices" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="comparators" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="conjoined-change" type="b2602c69:ProjectViewProjectNode" />
@@ -323,12 +225,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619439051335" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619445184867" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -391,11 +295,13 @@
       <workItem from="1617937160893" duration="4663000" />
       <workItem from="1619400304805" duration="14599000" />
       <workItem from="1619431403125" duration="6488000" />
+      <workItem from="1619441494029" duration="3489000" />
+      <workItem from="1619445260399" duration="35000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140317000" />
+    <option name="totallyTimeSpent" value="143841000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -407,10 +313,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="977" height="877" extended-state="0" />
+    <frame x="0" y="23" width="720" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.40213904" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.40117994" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -443,7 +349,7 @@
       <window_info anchor="right" id="Database" order="6" weight="0.32941177" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32890856" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,22 +359,22 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/DecompositionController.java</url>
-          <line>63</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/EvaluationService.java</url>
-          <line>42</line>
-          <properties />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/ExportController.java</url>
           <line>41</line>
           <properties />
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/DecompositionController.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java</url>
+          <line>123</line>
+          <properties />
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -483,30 +389,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/lib/jgrapht-core-1.0.0.jar!/org/jgrapht/graph/AbstractBaseGraph.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="265" column="16" selection-start-line="265" selection-start-column="16" selection-end-line="265" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/graph/ClassNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/jgrapht-core-1.0.0.jar!/org/jgrapht/alg/KruskalMinimumSpanningTree.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#1552#1553#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/couplings/BaseCoupling.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
@@ -538,13 +420,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/graph/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/graph/WeightedEdge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -559,52 +434,10 @@
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/MicroservicesController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="62" column="27" lean-forward="true" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MinimumSpanningTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="e#614#615#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="94" column="22" selection-start-line="94" selection-end-line="95" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#DynamicClusterer#0;class#DynamicClusterer#0" />
-            <element signature="method#pickUpOtherNodes#0;class#DynamicClusterer#0" />
-            <element signature="method#RelationMetricsIsImproved#0;class#DynamicClusterer#0" />
-            <element signature="method#splitCallingGraph#0;class#DynamicClusterer#0" />
-            <element signature="method#splitCallingGraph#1;class#DynamicClusterer#0" />
-            <element signature="method#addMSTFromCallingGraph#0;class#DynamicClusterer#0" />
-            <element signature="method#dfsCollectNodes#0;class#DynamicClusterer#0" />
-            <element signature="method#buildMap#0;class#DynamicClusterer#0" />
-            <element signature="method#DeleteFromCallingGraph#0;class#DynamicClusterer#0" />
-            <element signature="method#evaluateCallingGraph#0;class#DynamicClusterer#0" />
-            <element signature="method#normalization#0;class#DynamicClusterer#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -770,13 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="66" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/evaluation/MicroserviceMetrics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -791,24 +617,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/RepositoryController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/reporting/TextFileReport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
@@ -848,31 +660,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/EvaluationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/DecompositionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/ExportController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
+        <state relative-caret-position="450">
           <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="33" column="28" selection-end-line="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DecompositionEvaluationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
+        <state relative-caret-position="1575">
           <caret line="120" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/reporting/TextFileReport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
@@ -886,17 +698,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/MetricsExportService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="33" column="28" selection-end-line="87" />
+        <state relative-caret-position="321">
+          <caret line="116" column="4" lean-forward="true" selection-start-line="116" selection-start-column="4" selection-end-line="116" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/MetricsExportService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#DynamicClusterer#0;class#DynamicClusterer#0" />
+            <element signature="method#RelationMetricsIsImproved#0;class#DynamicClusterer#0" />
+            <element signature="method#splitCallingGraph#0;class#DynamicClusterer#0" />
+            <element signature="method#splitCallingGraph#1;class#DynamicClusterer#0" />
+            <element signature="method#addMSTFromCallingGraph#0;class#DynamicClusterer#0" />
+            <element signature="method#dfsCollectNodes#0;class#DynamicClusterer#0" />
+            <element signature="method#buildMap#0;class#DynamicClusterer#0" />
+            <element signature="method#DeleteFromCallingGraph#0;class#DynamicClusterer#0" />
+            <element signature="method#evaluateCallingGraph#0;class#DynamicClusterer#0" />
+            <element signature="method#normalization#0;class#DynamicClusterer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/EvaluationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/graph/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/graph/ClassNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-23">
+          <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="136" column="44" selection-start-line="136" selection-start-column="44" selection-end-line="136" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/DecompositionParameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="e#1632#1633#0" expanded="true" />
+            <element signature="e#1956#1957#0" expanded="true" />
+            <element signature="e#1992#1993#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MinimumSpanningTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="e#658#659#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/DecompositionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/ConnectedComponents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="65" column="9" selection-end-line="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/MSTGraphClusterer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="101" column="22" selection-end-line="189" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
