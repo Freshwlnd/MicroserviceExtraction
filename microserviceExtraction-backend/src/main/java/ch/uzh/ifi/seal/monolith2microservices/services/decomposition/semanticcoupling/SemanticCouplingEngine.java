@@ -4,6 +4,7 @@ import ch.uzh.ifi.seal.monolith2microservices.main.Configs;
 import ch.uzh.ifi.seal.monolith2microservices.models.ClassContent;
 import ch.uzh.ifi.seal.monolith2microservices.models.couplings.SemanticCoupling;
 import ch.uzh.ifi.seal.monolith2microservices.models.git.GitRepository;
+import ch.uzh.ifi.seal.monolith2microservices.services.FilePathFilter;
 import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.semanticcoupling.classprocessing.ClassContentVisitor;
 import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.semanticcoupling.tfidf.TfIdfWrapper;
 import ch.uzh.ifi.seal.monolith2microservices.utils.ClassContentFilter;
@@ -23,25 +24,29 @@ public class SemanticCouplingEngine {
     @Autowired
     private Configs config;
 
-    public List<SemanticCoupling> computeCouplings(GitRepository repo) throws IOException{
+    @Autowired
+    private FilePathFilter filePathFilter;
+
+    public List<SemanticCoupling> computeCouplings(GitRepository repo) throws IOException {
 
         List<SemanticCoupling> couplings = new ArrayList<>();
 
         //Read class files (content) from repo
-        String localRepoPath = config.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId() + "/src/main/java";
+        String localRepoPath = config.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId();
 
         Path repoDirectory = Paths.get(localRepoPath);
 
-        ClassContentVisitor visitor = new ClassContentVisitor(repo,config, new ClassContentFilter());
+        ClassContentVisitor visitor = new ClassContentVisitor(repo, config, new ClassContentFilter());
+        visitor.setFilePathFilter(filePathFilter);
 
         Files.walkFileTree(repoDirectory, visitor);
 
         List<ClassContent> classes = visitor.getClasses();
 
-        for(ClassContent current: classes){
-            for(ClassContent other: classes){
+        for (ClassContent current : classes) {
+            for (ClassContent other : classes) {
                 if (!current.getFilePath().equals(other.getFilePath())) {
-                    SemanticCoupling coupling = new SemanticCoupling(current.getFilePath(),other.getFilePath(),TfIdfWrapper.computeSimilarity(current.getTokenizedContent(), other.getTokenizedContent()));
+                    SemanticCoupling coupling = new SemanticCoupling(current.getFilePath(), other.getFilePath(), TfIdfWrapper.computeSimilarity(current.getTokenizedContent(), other.getTokenizedContent()));
                     couplings.add(coupling);
                 }
             }

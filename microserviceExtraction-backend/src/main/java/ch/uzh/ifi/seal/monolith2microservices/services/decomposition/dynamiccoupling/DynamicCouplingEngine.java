@@ -4,6 +4,7 @@ import ch.uzh.ifi.seal.monolith2microservices.main.Configs;
 import ch.uzh.ifi.seal.monolith2microservices.models.MethodCallContent;
 import ch.uzh.ifi.seal.monolith2microservices.models.couplings.DynamicCoupling;
 import ch.uzh.ifi.seal.monolith2microservices.models.git.GitRepository;
+import ch.uzh.ifi.seal.monolith2microservices.services.FilePathFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class DynamicCouplingEngine {
 
     @Autowired
     private Configs config;
+
+    @Autowired
+    private FilePathFilter filePathFilter;
 
     GitRepository Repository;
 
@@ -36,6 +40,7 @@ public class DynamicCouplingEngine {
         Path repoDirectory = Paths.get(localRepoPath);
 
         LogfileVisitor visitor = new LogfileVisitor();
+        visitor.setFilePathFilter(filePathFilter);
 
         Files.walkFileTree(repoDirectory, visitor);
 

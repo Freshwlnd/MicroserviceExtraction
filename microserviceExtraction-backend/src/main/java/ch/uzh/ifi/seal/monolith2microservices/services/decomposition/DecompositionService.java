@@ -102,7 +102,7 @@ public class DecompositionService {
 
             couplings = lgc.generate();
 
-            if(parameters.isDynamicCoupling()) {
+            if (parameters.isDynamicCoupling()) {
 
                 callingGraph = LinearGraphCombination.create().setNeedSort(false).withDynamicCouplings(computeDynamicCallingCouplings(repository)).generate();
 
