@@ -7,7 +7,10 @@ import ch.uzh.ifi.seal.monolith2microservices.models.git.GitRepository;
 import ch.uzh.ifi.seal.monolith2microservices.models.graph.Decomposition;
 import ch.uzh.ifi.seal.monolith2microservices.persistence.DecompositionMetricsRepository;
 import ch.uzh.ifi.seal.monolith2microservices.persistence.DecompositionRepository;
+import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.DecompositionService;
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class MetricsExportService {
+
+    private static final Logger logger = LoggerFactory.getLogger(DecompositionService.class);
 
     private final String newLine = "\n";
 
@@ -133,14 +138,20 @@ public class MetricsExportService {
     private String createPerformanceTable(List<Decomposition> decompositions) throws Exception {
         StringBuilder sb = new StringBuilder();
         for (Decomposition decomposition : decompositions) {
-            EvaluationMetrics metrics = decompositionMetricsRepository.findByDecompositionId(decomposition.getId());
-            int historyLength = computeHistoryLengthInDays(decomposition.getRepository());
-            int commitCount = computeCommitCount(decomposition.getRepository());
+            try {
+                EvaluationMetrics metrics = decompositionMetricsRepository.findByDecompositionId(decomposition.getId());
+                int historyLength = computeHistoryLengthInDays(decomposition.getRepository());
+                int commitCount = computeCommitCount(decomposition.getRepository());
 
-            String row = createLogicalCouplingPerformanceRow(decomposition, metrics, historyLength, commitCount, ',');
+                String row = createLogicalCouplingPerformanceRow(decomposition, metrics, historyLength, commitCount, ',');
 
-            sb.append(row);
-            sb.append(newLine);
+                sb.append(row);
+                sb.append(newLine);
+            } catch (Exception e) {
+                e.printStackTrace();
+                logger.error(e.getMessage());
+
+            }
         }
         return sb.toString();
     }
