@@ -33,30 +33,29 @@ public class MicroserviceEvaluationService {
     private Configs config;
 
 
-
-    public MicroserviceMetrics from(Component microservice, GitRepository repo, List<ChangeEvent> history) throws IOException{
+    public MicroserviceMetrics from(Component microservice, GitRepository repo, List<ChangeEvent> history) throws IOException {
         MicroserviceMetrics metrics = new MicroserviceMetrics(microservice);
 
-        Map<String,Set<String>> fileAuthorMap = generateAuthorMap(history);
+        Map<String, Set<String>> fileAuthorMap = generateAuthorMap(history);
 
-        metrics.setContributors(computeAuthorSet(microservice,fileAuthorMap));
+        metrics.setContributors(computeAuthorSet(microservice, fileAuthorMap));
         metrics.setSizeLoc(computeSizeInLoc(microservice, repo));
         return metrics;
     }
 
-    private Map<String,Set<String>> generateAuthorMap(List<ChangeEvent> history){
-        Map<String,Set<String>> fileAuthorMap = new HashMap<>();
+    private Map<String, Set<String>> generateAuthorMap(List<ChangeEvent> history) {
+        Map<String, Set<String>> fileAuthorMap = new HashMap<>();
 
-        for(ChangeEvent event: history){
-            for(String fileName: event.getChangedFileNames()){
-                if(fileAuthorMap.get(fileName)==null){
+        for (ChangeEvent event : history) {
+            for (String fileName : event.getChangedFileNames()) {
+                if (fileAuthorMap.get(fileName) == null) {
                     Set<String> authorSet = new HashSet<>();
                     authorSet.add(event.getAuthorEmailAddress());
-                    fileAuthorMap.put(fileName,authorSet);
-                }else{
+                    fileAuthorMap.put(fileName, authorSet);
+                } else {
                     Set<String> authorSet = fileAuthorMap.get(fileName);
                     authorSet.add(event.getAuthorEmailAddress());
-                    fileAuthorMap.put(fileName,authorSet);
+                    fileAuthorMap.put(fileName, authorSet);
                 }
             }
         }
@@ -65,12 +64,12 @@ public class MicroserviceEvaluationService {
     }
 
 
-    private  Set<String> computeAuthorSet(Component microservice, Map<String, Set<String>> authorMap){
+    private Set<String> computeAuthorSet(Component microservice, Map<String, Set<String>> authorMap) {
         Set<String> authorSet = new HashSet<>();
 
-        for(ClassNode node : microservice.getNodes()){
+        for (ClassNode node : microservice.getNodes()) {
             Set<String> authors = authorMap.get(node.getId());
-            if(authors != null){
+            if (authors != null) {
                 authorSet.addAll(authors);
             }
         }
@@ -79,7 +78,7 @@ public class MicroserviceEvaluationService {
         return authorSet;
     }
 
-    private int computeSizeInLoc(Component microservice, GitRepository repo) throws IOException{
+    private int computeSizeInLoc(Component microservice, GitRepository repo) throws IOException {
 
         List<String> filePaths = new ArrayList<>();
         microservice.getNodes().forEach(node -> filePaths.add(node.getId()));
@@ -87,10 +86,14 @@ public class MicroserviceEvaluationService {
 
         int lineCounter = 0;
 
-        for(String filePath : filePaths){
-            BufferedReader reader = Files.newBufferedReader(Paths.get(pathPrefix + "/" + filePath));
-            while(reader.readLine() != null){
-                lineCounter++;
+        for (String filePath : filePaths) {
+            try {
+                BufferedReader reader = Files.newBufferedReader(Paths.get(pathPrefix + "/" + filePath));
+                while (reader.readLine() != null) {
+                    lineCounter++;
+                }
+            } catch (IOException ioe) {
+                logger.error(ioe.getMessage());
             }
         }
 

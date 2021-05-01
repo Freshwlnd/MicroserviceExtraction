@@ -30,9 +30,7 @@ public class DynamicEvaluationService {
 
     public double computeDynamicCoupling(GitRepository repo, Component firstMicroservice, Component secondMicroservice) throws IOException {
 
-        if (callingGraph == null) {
-            callingGraph = dynamicCouplingEngine.getCallingGraph(repo);
-        }
+        callingGraph = dynamicCouplingEngine.getCallingGraph(repo);
 
         Set<String> firstFileNameSet = new HashSet<>(firstMicroservice.getFilePaths());
         Set<String> secondFileNameSet = new HashSet<>(secondMicroservice.getFilePaths());
@@ -41,29 +39,21 @@ public class DynamicEvaluationService {
 
     }
 
-    public double computeEveryMicroserviceDynamic(GitRepository repo, Component microservice) throws IOException {
-
-        if (callingGraph == null) {
-            callingGraph = dynamicCouplingEngine.getCallingGraph(repo);
-        }
-
-        Set<String> fileNameSet = new HashSet<>(microservice.getFilePaths());
-
-        return getScoreInTwoSet(fileNameSet, fileNameSet);
-
-    }
-
     private double getScoreInTwoSet(Set<String> firstSet, Set<String> secondSet) {
 
         double coupling = 0;
+        double maxCp = 0;
 
         for (DynamicCoupling dc : callingGraph) {
             if (isInTwoSet(dc.getFirstFileName(), dc.getSecondFileName(), firstSet, secondSet)) {
                 coupling += dc.getScore();
             }
+            maxCp += dc.getScore();
         }
 
-        return coupling;
+        if(maxCp==0) maxCp = 1;
+
+        return coupling / maxCp;
 
     }
 

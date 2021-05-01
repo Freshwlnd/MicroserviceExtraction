@@ -110,7 +110,11 @@ public class DecompositionEvaluationService {
         List<Double> cohesion = new ArrayList<>();
 
         for (Component service : decomposition.getServices()) {
-            cohesion.add(dynamicEvaluationService.computeEveryMicroserviceDynamic(decomposition.getRepository(), service));
+            if (service.getSize() > 1) {
+                cohesion.add(dynamicEvaluationService.computeDynamicCoupling(decomposition.getRepository(), service, service));
+            } else {
+                cohesion.add(1d);
+            }
         }
 
         return cohesion.stream().mapToDouble(Double::doubleValue).sum() / cohesion.size();
@@ -129,7 +133,7 @@ public class DecompositionEvaluationService {
                     }
                 }
             }
-            return couplings.stream().mapToDouble(Double::doubleValue).sum() / couplings.size();
+            return couplings.stream().mapToDouble(Double::doubleValue).sum() / couplings.size() / 2;
 
         } else {
             return 1d;

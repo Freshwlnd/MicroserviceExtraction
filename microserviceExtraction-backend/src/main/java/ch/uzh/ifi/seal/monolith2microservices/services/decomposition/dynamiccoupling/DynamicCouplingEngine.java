@@ -24,9 +24,9 @@ public class DynamicCouplingEngine {
 
     GitRepository Repository;
 
-    List<DynamicCoupling> CallingGraph;
+    private List<DynamicCoupling> CallingGraph;
 
-    List<DynamicCoupling> RelationGraph;
+    private List<DynamicCoupling> RelationGraph;
 
     private void computeCouplings(GitRepository repo) throws IOException {
 

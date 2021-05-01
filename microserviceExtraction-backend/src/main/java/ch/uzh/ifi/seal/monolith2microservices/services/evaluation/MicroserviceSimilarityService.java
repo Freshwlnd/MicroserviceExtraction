@@ -6,6 +6,8 @@ import ch.uzh.ifi.seal.monolith2microservices.models.graph.Component;
 import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.semanticcoupling.tfidf.TfIdfWrapper;
 import ch.uzh.ifi.seal.monolith2microservices.utils.ClassContentFilter;
 import ch.uzh.ifi.seal.monolith2microservices.utils.FilterInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ import java.util.List;
 @Service
 public class MicroserviceSimilarityService {
 
+    private Logger logger = LoggerFactory.getLogger(EvaluationService.class);
+
     @Autowired
     Configs configs;
 
@@ -36,27 +40,33 @@ public class MicroserviceSimilarityService {
 
     public double computeEveryServiceSimilarity(GitRepository repo, Component microservice) throws IOException {
 
+        if (microservice.getSize() <= 1) return 1d;
+
         String pathPrefix = configs.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId();
 
         List<String> FilePaths = microservice.getFilePaths();
         List<List<String>> contents = new ArrayList<>();
         for (String filePath : FilePaths) {
-            String rawContent = getRawFileContent(Paths.get(pathPrefix + "/" + filePath));
-            contents.add(filterInterface.filterFileContent(rawContent));
+            try {
+                String rawContent = getRawFileContent(Paths.get(pathPrefix + "/" + filePath));
+                contents.add(filterInterface.filterFileContent(rawContent));
+            } catch (IOException ioe) {
+                logger.error(ioe.getMessage());
+            }
         }
 
-        double sumSim = 0;
+        List<Double> sumSim = new ArrayList<>();
 
         for (int i = 0; i < contents.size(); i++) {
             for (int j = 0; j < contents.size(); j++) {
                 if (i == j) continue;
 
-                sumSim += TfIdfWrapper.computeSimilarity(contents.get(i), contents.get(j));
+                sumSim.add(TfIdfWrapper.computeSimilarity(contents.get(i), contents.get(j)));
 
             }
         }
 
-        return sumSim / contents.size();
+        return sumSim.stream().mapToDouble(Double::doubleValue).sum() / sumSim.size();
     }
 
 
@@ -67,8 +77,12 @@ public class MicroserviceSimilarityService {
         List<String> content = new ArrayList<>();
 
         for (String filePath : filePaths) {
-            String rawContent = getRawFileContent(Paths.get(pathPrefix + "/" + filePath));
-            content.addAll(filterInterface.filterFileContent(rawContent));
+            try {
+                String rawContent = getRawFileContent(Paths.get(pathPrefix + "/" + filePath));
+                content.addAll(filterInterface.filterFileContent(rawContent));
+            } catch (IOException ioe) {
+                logger.error(ioe.getMessage());
+            }
         }
         return content;
     }

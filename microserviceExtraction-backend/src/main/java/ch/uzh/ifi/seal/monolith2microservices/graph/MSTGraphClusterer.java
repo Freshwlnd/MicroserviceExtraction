@@ -161,11 +161,11 @@ public final class MSTGraphClusterer {
         //Reverse collection so that largest distances are first
         Collections.reverse(edgeList);
 
-        int numConnectedComponents = 1;
-        int lastNumConnectedComponents = 1;
+        int numConnectedComponents = nodes.size() - edges.size();
+        int lastNumConnectedComponents = numConnectedComponents;
         int wantedNumComponents = numServices;
 
-        do {
+        while ((numConnectedComponents < wantedNumComponents) && (!edgeList.isEmpty())) {
             oldList = new ArrayList<>(edgeList);
 
             //delete edge with largest distance
@@ -181,7 +181,7 @@ public final class MSTGraphClusterer {
                 lastNumConnectedComponents = numConnectedComponents;
             }
 
-        } while ((numConnectedComponents < wantedNumComponents) && (!edgeList.isEmpty()));
+        }
 
         return edgeList;
     }
