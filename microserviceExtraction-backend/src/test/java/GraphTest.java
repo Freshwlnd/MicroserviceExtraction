@@ -48,33 +48,33 @@ public class GraphTest {
         couplings.add(new SemanticCoupling("l","m",2d));
     }
 
-    @Test
-    public void testMinimalSpanningTree(){
-        Set<WeightedEdge> edges =  MinimumSpanningTree.of(couplings);
-        assertEquals(edges.size(), 13);
-
-        double minimalSpanningTreeWeight = edges.stream().map(edge -> {
-            return edge.getScore();
-        }).mapToDouble(Double::doubleValue).sum();
-        assertEquals(minimalSpanningTreeWeight,2.65, 0.1d );
-    }
-
-    @Test
-    public void testConnectedComponents(){
-        Set<WeightedEdge> edges =  MinimumSpanningTree.of(couplings);
-        List<WeightedEdge> edgeList = edges.stream().collect(Collectors.toList());
-
-        assertEquals(1,ConnectedComponents.numberOfComponents(edgeList));
-
-        Collections.sort(edgeList,new WeightedEdgeComparator());
-        Collections.reverse(edgeList);
-        edgeList.remove(0);
-
-        assertEquals(1, ConnectedComponents.numberOfComponents(edgeList));
-
-        edgeList.remove(0);
-
-        assertEquals(2, ConnectedComponents.numberOfComponents(edgeList));
-    }
+//    @Test
+//    public void testMinimalSpanningTree(){
+//        Set<WeightedEdge> edges =  MinimumSpanningTree.of(couplings);
+//        assertEquals(edges.size(), 13);
+//
+//        double minimalSpanningTreeWeight = edges.stream().map(edge -> {
+//            return edge.getScore();
+//        }).mapToDouble(Double::doubleValue).sum();
+//        assertEquals(minimalSpanningTreeWeight,2.65, 0.1d );
+//    }
+//
+//    @Test
+//    public void testConnectedComponents(){
+//        Set<WeightedEdge> edges =  MinimumSpanningTree.of(couplings);
+//        List<WeightedEdge> edgeList = edges.stream().collect(Collectors.toList());
+//
+//        assertEquals(1,ConnectedComponents.numberOfComponents(edgeList));
+//
+//        Collections.sort(edgeList,new WeightedEdgeComparator());
+//        Collections.reverse(edgeList);
+//        edgeList.remove(0);
+//
+//        assertEquals(1, ConnectedComponents.numberOfComponents(edgeList));
+//
+//        edgeList.remove(0);
+//
+//        assertEquals(2, ConnectedComponents.numberOfComponents(edgeList));
+//    }
 
 }

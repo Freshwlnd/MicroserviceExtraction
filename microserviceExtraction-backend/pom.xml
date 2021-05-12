@@ -91,6 +91,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork> <!-- 如果没有该配置，devtools不会生效  打包 将外部jar包打包进项目中 -->
+					<includeSystemScope>true</includeSystemScope> <!-- 打包 将外部jar包打包进项目中 -->
+				</configuration>
 			</plugin>
 		</plugins>
 

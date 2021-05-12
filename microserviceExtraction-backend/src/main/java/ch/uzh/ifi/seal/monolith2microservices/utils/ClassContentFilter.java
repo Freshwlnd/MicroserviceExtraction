@@ -22,7 +22,7 @@ public class ClassContentFilter implements FilterInterface {
         List<String> filteredContent = new ArrayList<>();
 
         //tokenize
-        String[] tokens = rawFileContent.split("\\s+");
+        String[] tokens = rawFileContent.split("\\s+"); // \s即空格
 
 
         //filter out reserved keywords for programming languages
