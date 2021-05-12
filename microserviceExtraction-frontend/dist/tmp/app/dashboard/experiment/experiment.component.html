@@ -1,0 +1,126 @@
+ <!-- Page Heading -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="alert alert-info" role="alert"><h3>Do Experiments</h3></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-10 col-lg-offset-1">
+    <div class="card card-default">
+      <div class="card-header card-default">
+        <div class="row">
+          <div class="col-lg-3">
+            <i class="fa fa-ship fa-5x"></i>
+          </div>
+          <div class="col-lg-8 text-center">
+            <div><h1> Generate Requests </h1></div>
+            <hr>
+            <div> Auto generate random requests for experiment. </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <br>
+        <div class="col-lg-6 col-lg-offset-2">
+          <fieldset class="form-group" style="margin-left: 1rem !important;">
+            <input type="number" placeholder="Number of requests" class="form-control" [(ngModel)]="requestNum" value="100" >
+            <p class="help-block"> Number of requests that need to be automatically generated. </p>
+          </fieldset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-4">
+          <div class="input-group input-group-lg">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" (click)="makeRequests()" style="margin-left: 1rem !important;">Make</button>
+            </span>
+          </div>
+          <br>
+        </div>
+      </div>
+      <div class="card-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <div class="card card-default">
+        <div class="card-header card-default">
+          <h4>Execute Request Time (s):</h4>
+        </div>
+        <div class="card-block bg-white text-center">
+          <div class="row">
+            <div class="col-lg-4 col-lg-offset-1">
+              <small>PRBME:</small>
+              <br>
+              <hr>
+              <div class="list-group">
+                <h4 class="list-group-item-heading">{{PRBMEtime}}</h4>
+              </div>
+              <br>
+              <hr>
+              <div class="row">
+                <div class="col-lg-4 col-lg-offset-3">
+                        <button class="btn-block btn-danger" (click)="doPRBME()">Do Request</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-lg-offset-1">
+              <small>MEM:</small>
+              <br>
+              <hr>
+              <div class="list-group">
+                <h4 class="list-group-item-heading">{{MEMtime}}</h4>
+              </div>
+              <br>
+              <hr>
+              <div class="row">
+                <div class="col-lg-4 col-lg-offset-3">
+                  <button class="btn-block btn-danger" (click)="doMEM()">Do Request</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!--make requests-->
+  <div id="makeModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Automatically generate Requests</h4>
+        </div>
+        <div class="modal-body">
+          <i class="fa fa-spinner fa-pulse fa-3x col-lg-offset-5 fa-fw waiting-icon"></i>
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Computing Requests Time</h4>
+        </div>
+        <div class="modal-body">
+          <i class="fa fa-spinner fa-pulse fa-3x col-lg-offset-5 fa-fw waiting-icon"></i>
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

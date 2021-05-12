@@ -13,6 +13,18 @@ export class RestService {
                 protected configs: ConfigService) {
     }
 
+    makeRequests(requestNum: Number): Observable<Response> {
+        return this.http.get(this.configs.apiUrl + '/experiment/makeRequests/' + requestNum, this.requestOptions());
+    }
+    
+    doPRBME(): Observable<Response> {
+        return this.http.get(this.configs.apiUrl + '/experiment/doPRBME', this.requestOptions());
+    }
+
+    doMEM(): Observable<Response> {
+        return this.http.get(this.configs.apiUrl + '/experiment/doMEM', this.requestOptions());
+    }
+
     getRepository(id: Number): Observable<Response> {
       return this.http.get(this.configs.apiUrl + '/repositories/' + id, this.requestOptions());
     }

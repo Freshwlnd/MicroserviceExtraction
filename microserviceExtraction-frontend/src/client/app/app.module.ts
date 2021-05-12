@@ -8,8 +8,6 @@ import { routes } from './app.routes';
 
 import { SharedModule } from './shared/shared.module';
 
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
@@ -18,6 +16,7 @@ import { BlankPageModule } from './dashboard/blank-page/blankPage.module';
 import { CloneModule } from './dashboard/clone/clone.module';
 import { DecomposeModule } from './dashboard/decompose/decompose.module';
 import { MicroservicesModule } from './dashboard/microservices/microservices.module';
+import { ExperimentModule } from './dashboard/experiment/experiment.module';
 
 import {SidebarComponent} from './shared/index';
 import {GraphModule} from "./dashboard/graph/graph.module";
@@ -36,7 +35,8 @@ import {GraphModule} from "./dashboard/graph/graph.module";
 		CloneModule,
     DecomposeModule,
     GraphModule,
-    MicroservicesModule
+    MicroservicesModule,
+    ExperimentModule
 	],
 	declarations: [AppComponent, SidebarComponent],
 	providers: [{
