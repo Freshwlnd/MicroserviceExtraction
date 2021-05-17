@@ -45,11 +45,13 @@ public class ExperimentService {
 
     public Double doPRBME() {
         String[] args = new String[] {"python3", pyPath+"autoRequest.py", "--algorithm", "PRBME"};
+//        String[] args = new String[]{pyPath+"qPRBME.sh"};
         return request(args);
     }
 
     public Double doMEM() {
         String[] args = new String[]{"python3", pyPath + "autoRequest.py", "--algorithm", "MEM"};
+//        String[] args = new String[]{pyPath+"qMEM.sh"};
         return request(args);
     }
 
@@ -61,7 +63,11 @@ public class ExperimentService {
             Double time = 0.;
             String line = null;
             while((line = in.readLine()) != null) {
-                time = Double.parseDouble(line);
+                try {
+                    time = Double.parseDouble(line);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             in.close();
             BufferedReader err = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
