@@ -51,7 +51,7 @@ public class DynamicEvaluationService {
             maxCp += dc.getScore();
         }
 
-        if(maxCp==0) maxCp = 1;
+        if (maxCp == 0) maxCp = 1;
 
         return coupling / maxCp;
 

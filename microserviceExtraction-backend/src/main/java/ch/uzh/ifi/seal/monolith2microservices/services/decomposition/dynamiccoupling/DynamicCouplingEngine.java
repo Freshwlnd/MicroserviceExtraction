@@ -28,6 +28,8 @@ public class DynamicCouplingEngine {
 
     private List<DynamicCoupling> RelationGraph;
 
+    private List<MethodCallContent> methodCallContents;
+
     private void computeCouplings(GitRepository repo) throws IOException {
 
         Repository = repo;
@@ -44,17 +46,17 @@ public class DynamicCouplingEngine {
 
         Files.walkFileTree(repoDirectory, visitor);
 
-        List<MethodCallContent> methodCallContents = visitor.getMethodCallContents();
+        methodCallContents = visitor.getMethodCallContents();
 
         // CallingGraph
         Map<String, DynamicCoupling> callingMap = new HashMap<>();
         methodCallContents.forEach(methodCallContent -> {
             methodCallContent.getContent().forEach(content -> {
-                if (!content.getCallerMethodName().equals(content.getCalleeMethodName())) {
-                    String key = generateKeyFromFileNamesWithoutSort(content.getCallerMethodName(), content.getCalleeMethodName());
+                if (!content.getCallerClassName().equals(content.getCalleeClassName())) {
+                    String key = generateKeyFromFileNamesWithoutSort(content.getCallerClassName(), content.getCalleeClassName());
                     DynamicCoupling callingCoupling = callingMap.get(key);
                     if (callingCoupling == null) {
-                        callingCoupling = new DynamicCoupling(content.getCallerMethodName(), content.getCalleeMethodName(), 1);
+                        callingCoupling = new DynamicCoupling(content.getCallerClassName(), content.getCalleeClassName(), 1);
                     } else {
                         callingCoupling.setScore(callingCoupling.getScore() + 1);
                     }
@@ -69,8 +71,8 @@ public class DynamicCouplingEngine {
         methodCallContents.forEach(methodCallContent -> {
             Set<String> Methods = new HashSet<>();
             methodCallContent.getContent().forEach(content -> {
-                Methods.add(content.getCalleeMethodName());
-                Methods.add(content.getCallerMethodName());
+                Methods.add(content.getCallerClassName());
+                Methods.add(content.getCalleeClassName());
             });
             Methods.forEach(a -> {
                 Methods.forEach(b -> {
@@ -99,6 +101,11 @@ public class DynamicCouplingEngine {
     public List<DynamicCoupling> getCallingGraph(GitRepository repo) throws IOException {
         if (CallingGraph == null || !Repository.equals(repo)) computeCouplings(repo);
         return CallingGraph;
+    }
+
+    public List<MethodCallContent> getMethodCallContents(GitRepository repo) throws IOException {
+        if (methodCallContents == null || !Repository.equals(repo)) computeCouplings(repo);
+        return methodCallContents;
     }
 
     private String generateKeyFromFileNames(String firstFileName, String secondFileName) {

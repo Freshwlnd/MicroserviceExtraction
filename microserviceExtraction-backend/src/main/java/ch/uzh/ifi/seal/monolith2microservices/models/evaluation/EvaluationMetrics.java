@@ -38,6 +38,13 @@ public class EvaluationMetrics {
 
     private long executionTimeMillisClustering;
 
+    // Jin WuXia's metrics
+    private double CHM;
+    private double CHD;
+    private double IFN;
+    private double OPN;
+    private double IRN;
+
     public long getId() {
         return this.id;
     }
@@ -134,6 +141,54 @@ public class EvaluationMetrics {
         this.executionTimeMillisClustering = executionTimeMillisClustering;
     }
 
+    public double getCHM() {
+        return CHM;
+    }
+
+    public void setCHM(double CHM) {
+        this.CHM = CHM;
+    }
+
+    public double getCHD() {
+        return CHD;
+    }
+
+    public void setCHD(double CHD) {
+        this.CHD = CHD;
+    }
+
+    public double getIFN() {
+        return IFN;
+    }
+
+    public void setIFN(double IFN) {
+        this.IFN = IFN;
+    }
+
+    public double getIRN() {
+        return IRN;
+    }
+
+    public void setIRN(double IRN) {
+        this.IRN = IRN;
+    }
+
+    public double getOPN() {
+        return OPN;
+    }
+
+    public void setOPN(double OPN) {
+        this.OPN = OPN;
+    }
+
+    public void setJinMetrics(double CHM, double CHD, double IFN, double IRN, double OPN) {
+        setCHM(CHM);
+        setCHD(CHD);
+        setIFN(IFN);
+        setIRN(IRN);
+        setOPN(OPN);
+    }
+
     @Override
     public String toString() {
         return "EvaluationMetrics{" +
@@ -147,6 +202,11 @@ public class EvaluationMetrics {
                 ", similarityCohesion=" + similarityCohesion +
                 ", dynamicCohesion=" + dynamicCohesion +
                 ", dynamicCoupling=" + dynamicCoupling +
+                ", CHD=" + CHD +
+                ", CHM=" + CHM +
+                ", IFN=" + IFN +
+                ", IRN=" + IRN +
+                ", OPN=" + OPN +
                 ", executionTimeMillisStrategy=" + executionTimeMillisStrategy +
                 ", executionTimeMillisClustering=" + executionTimeMillisClustering +
                 '}';

@@ -90,12 +90,17 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
         // 直接分割无法将空字符串加入数组
         List<String> infos = new ArrayList<>(Arrays.asList(str.split(",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)")));   // 双引号内的逗号不分割
 
+        if (infos.size() > 11) {
+            String infoTimes = infos.get(12);
+//            System.out.println(infos);
+        }
         while (infos.size() < 12) {
             infos.add("");
         }
         if (infos.get(11).equals("")) {
             infos.set(11, "1");
         }
+        // 需要查看异常值的状态
         return new LogfilePairContent(Integer.parseInt(infos.get(0)), Integer.parseInt(infos.get(1)), infos.get(2), "src.main.java." + infos.get(3), "src.main.java." + infos.get(4), infos.get(5), infos.get(6), "src.main.java." + infos.get(7), "src.main.java." + infos.get(8), infos.get(9), infos.get(10), Double.parseDouble(infos.get(11)));
 
     }
@@ -104,6 +109,7 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
 
         Map<Integer, List<LogfilePairContent>> logfileMap = new HashMap<>();
 
+        // 将 logfilePairContents 按 TraceId 分组放进 logfileMap 中，并将 logfileMap 转化为 logfilePairContentLists（List）
         logfilePairContents.forEach(logfilePairContent -> {
             Integer key = logfilePairContent.getTraceId();
             List<LogfilePairContent> nowLogfilePairContents = logfileMap.get(key);
@@ -113,19 +119,17 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
             nowLogfilePairContents.add(logfilePairContent);
             logfileMap.put(key, nowLogfilePairContents);
         });
-
         List<List<LogfilePairContent>> logfilePairContentLists = logfileMap.values().stream().collect(Collectors.toList());
 
+        // 将 LogfilePairContent 转化为 MethodCallContent，并按 TraceId 放到各个 MethodCall 中
         List<MethodCallContent> methodCallContents = new ArrayList<>();
-
         logfilePairContentLists.forEach(logfilePairContentsList -> {
 
             List<MethodCall> methodCalls = new ArrayList<>();
-
             logfilePairContentsList.forEach(logfilePairContent -> {
                 String fileName1 = getRelativeFileName(logfilePairContent.getClass1()), fileName2 = getRelativeFileName(logfilePairContent.getClass2());
                 if (filePathFilter.pathIsValid(fileName1) && filePathFilter.pathIsValid(fileName2)) {
-                    methodCalls.add(new MethodCall(fileName1, fileName2));
+                    methodCalls.add(new MethodCall(logfilePairContent.getMethod1(), logfilePairContent.getClass1(), Arrays.asList(trimBothEndsChars(logfilePairContent.getM1_para(), "\"").split(",")), Arrays.asList(trimBothEndsChars(logfilePairContent.getM1_return(), "\"").split(",")), logfilePairContent.getMethod2(), logfilePairContent.getClass2(), Arrays.asList(trimBothEndsChars(logfilePairContent.getM2_para(), "\"").split(",")), Arrays.asList(trimBothEndsChars(logfilePairContent.getM2_return(), "\"").split(","))));
                 }
             });
 
@@ -135,6 +139,11 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
 
         return methodCallContents;
 
+    }
+
+    private String trimBothEndsChars(String srcStr, String splitter) {
+        String regex = "^" + splitter + "*|" + splitter + "*$";
+        return srcStr.replaceAll(regex, "");
     }
 
     private List<MethodCallContent> extractMethodCallContentTest(List<LogfileContent> logfileContents) {
@@ -200,9 +209,9 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
 
     private String getRelativeFileName(String methodName) {
         String[] packageNameArray = methodName.split("\\.");
-        List<String> pacageNameList = new ArrayList<>(packageNameArray.length);
-        Collections.addAll(pacageNameList, packageNameArray);
-        return String.join("/", pacageNameList) + ".java";
+        List<String> packageNameList = new ArrayList<>(packageNameArray.length);
+        Collections.addAll(packageNameList, packageNameArray);
+        return String.join("/", packageNameList) + ".java";
     }
 
 }

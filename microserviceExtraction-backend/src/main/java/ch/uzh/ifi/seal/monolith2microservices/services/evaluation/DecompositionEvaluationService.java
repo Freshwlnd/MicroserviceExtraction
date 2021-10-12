@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by gmazlami on 1/12/17.
@@ -38,6 +35,9 @@ public class DecompositionEvaluationService {
     @Autowired
     DynamicEvaluationService dynamicEvaluationService;
 
+    @Autowired
+    PRBMEEvaluationService prbmeEvaluationService;
+
 
     public EvaluationMetrics computeMetrics(Decomposition decomposition, List<MicroserviceMetrics> microserviceMetrics) throws IOException {
         EvaluationMetrics metrics = new EvaluationMetrics();
@@ -52,7 +52,13 @@ public class DecompositionEvaluationService {
         metrics.setDynamicCoupling(computeDynamicCoupling(decomposition));
         metrics.setExecutionTimeMillisClustering(decomposition.getClusteringTime());
         metrics.setExecutionTimeMillisStrategy(decomposition.getStrategyTime());
+        ArrayList<Double> JinMetrics = computeJinMetrics(decomposition);   // CHM CHD IFN IRN OPN
+        metrics.setJinMetrics(JinMetrics.get(0), JinMetrics.get(1), JinMetrics.get(2), JinMetrics.get(3), JinMetrics.get(4));
         return metrics;
+    }
+
+    private ArrayList<Double> computeJinMetrics(Decomposition decomposition) throws IOException {
+        return prbmeEvaluationService.computeJinMetrics(decomposition.getRepository(), decomposition.getServices());
     }
 
     private double computeContributorPerMicroservice(List<MicroserviceMetrics> microserviceMetrics) {

@@ -26,8 +26,18 @@ public class ExportController {
     private MetricsExportService metricsExportService;
 
     @CrossOrigin
-    @RequestMapping(value="/export/performance", method= RequestMethod.GET)
-    public ResponseEntity<String> exportPerformanceMetrics() throws Exception{
+    @RequestMapping(value = "/export/performance", method = RequestMethod.GET)
+    public ResponseEntity<String> exportPerformanceMetrics() throws Exception {
+        TextFileReport.writeToFile(metricsExportService.exportLogicalCouplingPerformanceMetrics(), "logicalCouplingPerformance.txt");
+        TextFileReport.writeToFile(metricsExportService.exportSemanticCouplingPerformanceMetrics(), "semanticCouplingPerformance.txt");
+        TextFileReport.writeToFile(metricsExportService.exportContributorCouplingPerformanceMetrics(), "contributorCouplingPerformance.txt");
+        TextFileReport.writeToFile(metricsExportService.exportDynamicCouplingPerformanceMetrics(), "dynamicCouplingPerformance.txt");
+        return new ResponseEntity<String>("OK", HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/export/independent", method = RequestMethod.GET)
+    public ResponseEntity<String> exportIndependentMetrics() throws Exception {
         TextFileReport.writeToFile(metricsExportService.exportLogicalCouplingPerformanceMetrics(), "logicalCouplingPerformance.txt");
         TextFileReport.writeToFile(metricsExportService.exportSemanticCouplingPerformanceMetrics(), "semanticCouplingPerformance.txt");
         TextFileReport.writeToFile(metricsExportService.exportContributorCouplingPerformanceMetrics(), "contributorCouplingPerformance.txt");
@@ -37,8 +47,8 @@ public class ExportController {
 
 
     @CrossOrigin
-    @RequestMapping(value="/export/quality", method= RequestMethod.GET)
-    public ResponseEntity<String> exportQualityMetrics() throws Exception{
+    @RequestMapping(value = "/export/quality", method = RequestMethod.GET)
+    public ResponseEntity<String> exportQualityMetrics() throws Exception {
         TextFileReport.writeToFile(metricsExportService.exportQualityMetrics(), "qualityMetrics.txt");
         return new ResponseEntity<String>("OK", HttpStatus.OK);
     }

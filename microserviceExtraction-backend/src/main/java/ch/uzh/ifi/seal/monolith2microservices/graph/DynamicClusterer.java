@@ -333,9 +333,9 @@ public final class DynamicClusterer {
         Double eps = 1e-6;
 
         // component的size越小，越容易被划分，这是不希望被看到的
-        // Double choosedParameter = 3.;
+        // Double choosedParameter = 2.;
         Double choosedParameter;
-        choosedParameter = max(3., 3. * ALLNODENUM / 4 / component.getSize());
+        choosedParameter = max(2., 2. * ALLNODENUM / 4 / component.getSize());
 
         Map<String, Integer> str2ID = new HashMap<>();
         Map<Integer, String> id2Str = new HashMap<>();
@@ -388,13 +388,13 @@ public final class DynamicClusterer {
                         biggestInNodeVal = nowVal;
                     }
                 }
-                if (outDegree.get(i) >= OutDegreeThreshold) {
-                    Double nowVal = flow.get(i) * outDegree.get(i);
-                    if (biggestOutNodeId == -1 || biggestOutNodeVal < nowVal) {
-                        biggestOutNodeId = i;
-                        biggestOutNodeVal = nowVal;
-                    }
-                }
+//                if (outDegree.get(i) >= OutDegreeThreshold) {
+//                    Double nowVal = flow.get(i) * outDegree.get(i);
+//                    if (biggestOutNodeId == -1 || biggestOutNodeVal < nowVal) {
+//                        biggestOutNodeId = i;
+//                        biggestOutNodeVal = nowVal;
+//                    }
+//                }
             }
         }
 

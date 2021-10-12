@@ -33,7 +33,8 @@ public final class ConnectedComponents {
     }
 
     public static int numberOfComponents(List<WeightedEdge> edgeList) {
-        return (int) connectedComponents(edgeList).stream().filter(singleNodeFilter).count();
+        return (int) connectedComponents(edgeList).size();
+//        return (int) connectedComponents(edgeList).stream().filter(singleNodeFilter).count();
     }
 
 

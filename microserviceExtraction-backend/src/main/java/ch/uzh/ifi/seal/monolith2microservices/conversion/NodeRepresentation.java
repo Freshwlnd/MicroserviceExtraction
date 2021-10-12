@@ -15,13 +15,13 @@ public class NodeRepresentation {
 
     private String color;
 
-    public NodeRepresentation(long id, String fullClassName){
+    public NodeRepresentation(long id, String fullClassName) {
         this.id = id;
         this.fullClassName = fullClassName;
         this.label = getClassNameFromFileName(fullClassName);
     }
 
-    public NodeRepresentation(long id, String fullClassName, String hexColorCode){
+    public NodeRepresentation(long id, String fullClassName, String hexColorCode) {
         this(id, fullClassName);
         this.color = hexColorCode;
     }
@@ -38,7 +38,7 @@ public class NodeRepresentation {
         return label;
     }
 
-    public String getFullClassName(){
+    public String getFullClassName() {
         return this.fullClassName;
     }
 
@@ -47,17 +47,20 @@ public class NodeRepresentation {
     }
 
 
-    public void setColor(String hexColorCode){
+    public void setColor(String hexColorCode) {
         this.color = hexColorCode;
     }
 
-    public String getColor(){
+    public String getColor() {
         return this.color;
     }
 
-    private String getClassNameFromFileName(String fileName){
+    private String getClassNameFromFileName(String fileName) {
         String[] elements = fileName.split(File.separator);
-        return elements[elements.length -1];
+        if (elements.length < 2) {
+            elements = fileName.split("\\.");
+        }
+        return elements[elements.length - 1];
     }
 
     @Override
