@@ -25,7 +25,7 @@ export class GraphComponent implements OnInit{
 
   isDataAvailable: boolean;
 
-  @ViewChild('mynetwork') networkDiv;
+  @ViewChild('mynetwork') networkDiv:any;
 
   constructor(private _rest : RestService, private _route: ActivatedRoute, private _datapassingService: DataPassingService){
 
@@ -43,7 +43,7 @@ export class GraphComponent implements OnInit{
           springLength: 50,
           centralGravity: 0,
           springConstant: 0.9,
-          springLength: 20,
+          // springLength: 20,
           avoidOverlap: 1,
           damping: 0
         }
@@ -52,11 +52,11 @@ export class GraphComponent implements OnInit{
 
     var microservices = JSON.parse(this.decomposition);
 
-    var componentIds = [];
+    var componentIds:any[] = [];
 
-    var nodeList = [];
+    var nodeList:any[] = [];
 
-    var edgeList = [];
+    var edgeList:any[] = [];
 
     for(var i=0; i < microservices.length; i++){
       componentIds.push(microservices[i].componentId);
@@ -85,12 +85,12 @@ export class GraphComponent implements OnInit{
     var network = new vis.Network(this.networkDiv.nativeElement, data, options);
 
     // form clusters after drawing the nodes
-    network.on("afterDrawing", function (params) {
+    network.on("afterDrawing", function (params:any) {
       if(initiated==false){
 
         for(var i = 0; i < componentIds.length; i++){
           var options = {
-            joinCondition: function(nodeOptions){
+            joinCondition: function(nodeOptions:any){
 
               if(nodeOptions.componentId == componentIds[i]){
                 return true;
@@ -106,7 +106,7 @@ export class GraphComponent implements OnInit{
 
     });
 
-    network.on("selectNode", function (params) {
+    network.on("selectNode", function (params:any) {
       var selectedNodeId = params.nodes[0];
       network.openCluster(selectedNodeId,{});
     });
@@ -120,7 +120,7 @@ export class GraphComponent implements OnInit{
           // means we come from the 'microservices' view
           this.repository = this._datapassingService.getRepository();
           this._rest.getDecomposition(params['id']).subscribe(response => {
-            this.decomposition = response._body;
+            this.decomposition = (response as any)["_body"];
             this.createNetwork();
           });
         }else{

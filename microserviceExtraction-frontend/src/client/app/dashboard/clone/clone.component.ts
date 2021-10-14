@@ -22,7 +22,9 @@ export class CloneComponent implements OnInit{
   ngOnInit(): void {
       this._rest.listRepositories().subscribe(
           result => {
-              this.repositories = JSON.parse(result._body);
+              // this.repositories = JSON.parse(result._body);
+              // this.repositories = JSON.parse(result["_body"]);
+              this.repositories = JSON.parse((result as any)["_body"]);
           },
           error => {
               //alert(error);
@@ -35,7 +37,9 @@ export class CloneComponent implements OnInit{
     console.log("Repository:  " + this.repository);
     this._rest.cloneRepository(this.repository).subscribe(
         result => {
-          this.repositories.unshift(JSON.parse(result._body));
+          // this.repositories.unshift(JSON.parse(result._body));
+          // this.repositories.unshift(JSON.parse(result["_body"]));
+          this.repositories.unshift(JSON.parse((result as any)["_body"]));
         },
         error => {
           alert("There was an error during cloning.");

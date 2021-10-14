@@ -81,7 +81,7 @@ public class MicroserviceEvaluationService {
     private int computeSizeInLoc(Component microservice, GitRepository repo) throws IOException {
 
         List<String> filePaths = new ArrayList<>();
-        microservice.getNodes().forEach(node -> filePaths.add(node.getId()));
+        microservice.getNodes().forEach(node -> filePaths.add(node.getId().replace('.', '/') + ".java"));
         String pathPrefix = config.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId();
 
         int lineCounter = 0;

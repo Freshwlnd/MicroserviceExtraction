@@ -21,7 +21,7 @@ export class MicroservicesComponent implements OnInit{
   ngOnInit(): void {
       this._rest.listDecompositions().subscribe(
           result => {
-              this.decompositions = JSON.parse(result._body);
+              this.decompositions = JSON.parse((result as any)["_body"]);
           },
           error => {
               //alert(error);
@@ -61,6 +61,18 @@ export class MicroservicesComponent implements OnInit{
       if(parameters.logicalCoupling == true){
         parameterString = parameterString + ", historyInterval: [ " + parameters.intervalSeconds + "s ]";
       }
+
+      parameterString = parameterString + ", Method: ["
+
+      if(parameters.usePRBME == true){
+        parameterString = parameterString + " usePRBME ";
+      }
+
+      if(parameters.useMEM == true){
+        parameterString = parameterString + " useMEM ";
+      }
+
+      parameterString = parameterString + " ]";
 
       return parameterString;
     }else{

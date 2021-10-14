@@ -102,7 +102,7 @@ public class DecompositionService {
 
             couplings = lgc.generate();
 
-            if (parameters.isDynamicCoupling()) {
+            if (parameters.isUsePRBME()) {
 
                 callingGraph = LinearGraphCombination.create().setNeedSort(false).withDynamicCouplings(computeDynamicCallingCouplings(repository)).generate();
 
@@ -114,12 +114,12 @@ public class DecompositionService {
 
             Set<Component> components;
 
-            if (parameters.isDynamicCoupling()) {
+            if (parameters.isUsePRBME()) {
 
                 // 两张图
                 components = DynamicClusterer.clusterWithSplit(couplings, callingGraph, parameters.getNumServices());
 
-            } else {
+            } else {    // parameters.isUseMEM()
 
                 components = MSTGraphClusterer.clusterWithSplit(couplings, parameters.getSizeThreshold(), parameters.getNumServices());
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../services/rest.service';
 import { Repository } from '../../models/repository.model';
 
+declare var $: any;
+
 @Component({
   moduleId: module.id,
   selector: 'experiment-repo',
@@ -45,7 +47,7 @@ export class ExperimentComponent implements OnInit{
     console.log("do PRBME");
     this._rest.doPRBME().subscribe(
         result => {
-          this.PRBMEtime = (JSON.parse(result._body));
+          this.PRBMEtime = (JSON.parse((result as any)["_body"]));
           $('#myModal').modal('hide');
         },
         error => {
@@ -61,7 +63,7 @@ export class ExperimentComponent implements OnInit{
     console.log("do MEM");
     this._rest.doMEM().subscribe(
         result => {
-          this.MEMtime = (JSON.parse(result._body));
+          this.MEMtime = (JSON.parse((result as any)["_body"]));
           $('#myModal').modal('hide');
         },
         error => {

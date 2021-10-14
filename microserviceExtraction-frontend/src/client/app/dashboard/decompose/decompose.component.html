@@ -40,6 +40,20 @@
         </div>
         <div class="card-block bg-white">
           <div class="row">
+
+            <div class="col-lg-3">
+              <div class="form-group">
+                <small>Method:</small>
+                <br>
+                <hr>
+                <div class="radio">
+                  <label><input checked="" id="optionRadioPRBME" name="useMethod" type="radio" value="PRBME"> PRBME</label>
+                </div>
+                <div class="radio">
+                  <label><input checked="" id="optionRadioMEM" name="useMethod" type="radio" value="MEM"> MEM</label>
+                </div>
+              </div>
+            </div>
             <div class="col-lg-3">
               <div class="form-group">
                 <small>Strategies:</small>
@@ -66,7 +80,7 @@
               <div class="row">
                 <div class="col-lg-4">
                   <fieldset class="form-group">
-                    <input placeholder="Number of microservices" class="form-control" [(ngModel)]="numServices" value="4">
+                    <input placeholder="Number of microservices" class="form-control" [(ngModel)]="numServices">
                     <p class="help-block">Number of wanted microservices.</p>
                   </fieldset>
                 </div>

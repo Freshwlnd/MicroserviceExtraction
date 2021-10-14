@@ -1,6 +1,7 @@
 package ch.uzh.ifi.seal.monolith2microservices.services.evaluation;
 
 
+import antlr.StringUtils;
 import ch.uzh.ifi.seal.monolith2microservices.main.Configs;
 import ch.uzh.ifi.seal.monolith2microservices.models.Method;
 import ch.uzh.ifi.seal.monolith2microservices.models.MethodCall;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by fre5h1nd on 26.04.2021.
@@ -31,7 +33,6 @@ public class PRBMEEvaluationService {
     @Autowired
     DynamicCouplingEngine dynamicCouplingEngine;
 
-    private List<DynamicCoupling> callingGraph;
     private List<MethodCallContent> methodCallContents;
 
     private Map<Long, Set<String>> micro2class;
@@ -41,7 +42,7 @@ public class PRBMEEvaluationService {
     private FilterInterface filterInterface;
 
 
-    // CHM CHD IFN IRN OPN
+    // CHD CHM IFN OPN IRN
     public ArrayList<Double> computeJinMetrics(GitRepository repo, Set<Component> microservices) throws IOException {
         filterInterface = new ClassContentFilter();
         methodCallContents = dynamicCouplingEngine.getMethodCallContents(repo);
@@ -49,7 +50,28 @@ public class PRBMEEvaluationService {
         buildMapBetweenClassAndMicroservice(microservices);
         // 将所有出现的方法按微服务分类()（只考虑被调用的方法，是否有问题？）
         classifyMethodByMicroservice();
-        return new ArrayList<>(Arrays.asList(computeCHM(), computeCHD(), computeIFN(), computeIRN(), computeOPN()));
+        return new ArrayList<>(Arrays.asList(computeCHD(), computeCHM(), computeIFN(), computeOPN(), computeIRN()));
+    }
+
+    private Double computeCHD() {
+        List<Double> ansList = new ArrayList<>();
+        // -计算每个微服务内chd-
+        methodsInEveryMicro.forEach((microId, methodMap) -> {  // 对每个微服务内的方法
+            if (methodMap.size() == 1) {   // 若只存在一个方法
+                ansList.add(1d);    // 记为1
+            } else {    // 否则
+                List<Double> chdi = new ArrayList<>();
+                for (Method method1 : methodMap.values()) {
+                    for (Method method2 : methodMap.values()) {   // 对任意两个方法
+                        chdi.add(CHDSimilarity(method1, method2));    // 求相似度()
+                    }
+                }
+                // 取平均值【除以"方法数*(方法数+1)/2"】
+                ansList.add(chdi.stream().mapToDouble(Double::doubleValue).sum() / chdi.size());
+            }
+        });
+        // 取平均
+        return ansList.stream().mapToDouble(Double::doubleValue).sum() / ansList.size();
     }
 
     private Double computeCHM() {
@@ -76,27 +98,6 @@ public class PRBMEEvaluationService {
         return ansList.stream().mapToDouble(Double::doubleValue).sum() / ansList.size();
     }
 
-    private Double computeCHD() {
-        List<Double> ansList = new ArrayList<>();
-        // -计算每个微服务内chd-
-        methodsInEveryMicro.forEach((microId, methodMap) -> {  // 对每个微服务内的方法
-            if (methodMap.size() == 1) {   // 若只存在一个方法
-                ansList.add(1d);    // 记为1
-            } else {    // 否则
-                List<Double> chdi = new ArrayList<>();
-                for (Method method1 : methodMap.values()) {
-                    for (Method method2 : methodMap.values()) {   // 对任意两个方法
-                        chdi.add(CHDSimilarity(method1, method2));    // 求相似度()
-                    }
-                }
-                // 取平均值【除以"方法数*(方法数+1)/2"】
-                ansList.add(chdi.stream().mapToDouble(Double::doubleValue).sum() / ((chdi.size() + 1) * chdi.size() / 2));
-            }
-        });
-        // 取平均
-        return ansList.stream().mapToDouble(Double::doubleValue).sum() / ansList.size();
-    }
-
     private Double computeIFN() {
         Set<String> classBeCalledByOtherMicro = new HashSet<>();
         // -取出被其他微服务依赖的类-
@@ -112,7 +113,7 @@ public class PRBMEEvaluationService {
         return 1d * classBeCalledByOtherMicro.size() / micro2class.size();
     }
 
-    private Double computeIRN() {
+    private Double computeOPN() {
         Set<String> methodBeCalledByOtherMicro = new HashSet<>();
         // -取出被其他微服务调用的方法-
         methodsInEveryMicro.forEach((microId, methodMap) -> {
@@ -127,7 +128,7 @@ public class PRBMEEvaluationService {
         return 1d * methodBeCalledByOtherMicro.size();
     }
 
-    private Double computeOPN() {
+    private Double computeIRN() {
         Integer beCalledTimesByOtherMicro = 0;
         // -计算不同微服务间的调用次数-
         for (Map<String, Method> methodMap : methodsInEveryMicro.values()) {
@@ -165,7 +166,7 @@ public class PRBMEEvaluationService {
                 Method calleeMethod = methodCall.getCalleeMethod();
                 Long callerMicroId = class2micro.get(callerMethod.getClassName());
                 Long calleeMicroId = class2micro.get(calleeMethod.getClassName());
-                if (callerMicroId == null || callerMicroId == null) {
+                if (callerMicroId == null || calleeMicroId == null) {
                     continue;
                 }
                 // 判断是否为微服务内部调用
@@ -206,6 +207,18 @@ public class PRBMEEvaluationService {
         }
     }
 
+    private Double CHDSimilarity(Method method1, Method method2) {
+
+        Set<String> term1 = filterInterface.filterFileContent(method1.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method1.getMethodName(), ".", 2))).stream().map(String::toLowerCase).collect(Collectors.toSet());
+        Set<String> term2 = filterInterface.filterFileContent(method2.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method2.getMethodName(), ".", 2))).stream().map(String::toLowerCase).collect(Collectors.toSet());
+        Set<String> termUnionSet, termIntersectionSet;
+        termUnionSet = new HashSet<>(term1);
+        termIntersectionSet = new HashSet<>(term1);
+        termUnionSet.addAll(term2);
+        termIntersectionSet.retainAll(term2);
+        return 1d * termIntersectionSet.size() / termUnionSet.size();
+    }
+
     private Double CHMSimilarity(Method method1, Method method2) {
         Set<String> para1 = new HashSet<>(method1.getParaType());
         Set<String> para2 = new HashSet<>(method2.getParaType());
@@ -222,17 +235,6 @@ public class PRBMEEvaluationService {
         retUnionSet.addAll(ret2);
         retIntersectionSet.retainAll(ret2);
         return (1d * paraIntersectionSet.size() / paraUnionSet.size() + 1d * retIntersectionSet.size() / retUnionSet.size()) / 2d;
-    }
-
-    private Double CHDSimilarity(Method method1, Method method2) {
-        Set<String> term1 = new HashSet<>(filterInterface.filterFileContent(method1.getMethodName()));
-        Set<String> term2 = new HashSet<>(filterInterface.filterFileContent(method2.getMethodName()));
-        Set<String> termUnionSet, termIntersectionSet;
-        termUnionSet = new HashSet<>(term1);
-        termIntersectionSet = new HashSet<>(term1);
-        termUnionSet.addAll(term2);
-        termIntersectionSet.retainAll(term2);
-        return 1d * termIntersectionSet.size() / termUnionSet.size();
     }
 
 }

@@ -52,8 +52,10 @@ public class DecompositionEvaluationService {
         metrics.setDynamicCoupling(computeDynamicCoupling(decomposition));
         metrics.setExecutionTimeMillisClustering(decomposition.getClusteringTime());
         metrics.setExecutionTimeMillisStrategy(decomposition.getStrategyTime());
-        ArrayList<Double> JinMetrics = computeJinMetrics(decomposition);   // CHM CHD IFN IRN OPN
+        ArrayList<Double> JinMetrics = computeJinMetrics(decomposition);   // CHD CHM IFN OPN IRN
         metrics.setJinMetrics(JinMetrics.get(0), JinMetrics.get(1), JinMetrics.get(2), JinMetrics.get(3), JinMetrics.get(4));
+        System.out.println(decomposition.getServices().size());
+        System.out.println(JinMetrics);
         return metrics;
     }
 

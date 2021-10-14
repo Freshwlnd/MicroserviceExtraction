@@ -31,13 +31,15 @@ export class DecomposeComponent implements OnInit{
 
   dynamicCoupling: boolean;
 
-  numServices: Number = 4;
+  numServices: Number = 14;
 
   intervalSeconds: Number = 3600;
 
-  sizeThreshold: Number = 10;
+  sizeThreshold: Number = 400;
 
   isDataAvailable: boolean;
+
+  useMethod: String = "MEM"
 
 
   constructor(private _rest : RestService, private _route: ActivatedRoute, private _datapassingService: DataPassingService, private _router: Router){
@@ -51,7 +53,8 @@ export class DecomposeComponent implements OnInit{
       let id = +params['id'];
       this._rest.getRepository(id).subscribe(
         result => {
-          this.repository = JSON.parse(result._body);
+          // this.repository = JSON.parse(result._body);
+          this.repository = JSON.parse((result as any)["_body"]);
           this.isDataAvailable = true;
         },
         error => {
@@ -72,10 +75,13 @@ export class DecomposeComponent implements OnInit{
     dto.semanticCoupling = this.semanticCoupling == true ? true : false;
     dto.contributorCoupling = this.contributorCoupling == true ? true : false;
     dto.dynamicCoupling = this.dynamicCoupling == true ? true : false;
+    dto.usePRBME = this.useMethod == "PRBME" ? true : false;
+    dto.useMEM = this.useMethod == "MEM" ? true : false;
 
     this._rest.decompose(this.repository.id, dto).subscribe(
       result => {
-        var response = result._body;
+        // var response = result._body;
+        var response = (result as any)["_body"];
         this._datapassingService.setDecomposition(response);
         this._datapassingService.setRepository(this.repository);
         this._router.navigateByUrl('/graph');

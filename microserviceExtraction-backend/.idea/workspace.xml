@@ -5,27 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e03b6cd-eeb4-425c-9199-b2be225fd216" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/Method.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/PRBMEEvaluationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/{徐悦皓} 答辩记录.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/~$开题报告.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/~$文献综述.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/~$正文.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/任务书.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/任务书.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/外文翻译.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/外文翻译.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/开题报告.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/开题报告.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/开题答辩_计科1701徐悦皓.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/文献综述.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/文献综述.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/正文.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/正文.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/毕业答辩_计科1701_徐悦皓.pptx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/ExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/controllers/ExportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/conversion/NodeRepresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/conversion/NodeRepresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/ConnectedComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/ConnectedComponents.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/LinearGraphCombination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/LinearGraphCombination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/MethodCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/couplings/DynamicCoupling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/couplings/DynamicCoupling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/DecompositionParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/DecompositionParameters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/evaluation/EvaluationMetrics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/evaluation/EvaluationMetrics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/DynamicCouplingEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/LogfileVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/dynamiccoupling/LogfileVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/StopWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/StopWords.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DecompositionEvaluationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DecompositionEvaluationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DynamicEvaluationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DynamicEvaluationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/services/config.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/services/config.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceEvaluationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceEvaluationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/PRBMEEvaluationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/PRBMEEvaluationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/clone/clone.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/clone/clone.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/experiment/experiment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/experiment/experiment.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/experiment/experiment.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/experiment/experiment.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/experiment/experiment.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/experiment/experiment.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/graph/graph.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/graph/graph.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/microservices/microservices.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/microservices/microservices.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/models/decomposition.dto.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/models/decomposition.dto.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/services/config.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/services/config.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/tmp/app/dashboard/decompose/decompose.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/tmp/app/dashboard/decompose/decompose.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/tmp/app/dashboard/experiment/experiment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/tmp/app/dashboard/experiment/experiment.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express-serve-static-core/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express-serve-static-core/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express-serve-static-core/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express-serve-static-core/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express-serve-static-core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express-serve-static-core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/@types/express/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/clone/clone.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/clone/clone.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/experiment/experiment.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/experiment/experiment.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/experiment/experiment.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/experiment/experiment.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/experiment/experiment.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/experiment/experiment.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/graph/graph.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/graph/graph.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/microservices/microservices.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/microservices/microservices.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/models/decomposition.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/models/decomposition.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../paper/Algorithmic_Extraction_of_Microservices_from_Monolithic_Code_Bases.pdf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,19 +342,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -381,6 +403,8 @@
       <workItem from="1622489155868" duration="799000" />
       <workItem from="1633403771921" duration="1494000" />
       <workItem from="1633780396508" duration="33177000" />
+      <workItem from="1634051613252" duration="28505000" />
+      <workItem from="1634220400549" duration="42000" />
     </task>
     <servers />
   </component>
@@ -462,12 +486,42 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DecompositionEvaluationService.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="26" />
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceEvaluationService.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/EvaluationService.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/MetricsExportService.java</url>
+          <line>151</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/MicroserviceSimilarityService.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="ch.uzh.ifi.seal.monolith2microservices.models.couplings.SemanticCoupling" memberName="firstFileName" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">

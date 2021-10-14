@@ -6,4 +6,6 @@ export class DecompositionDTO {
   numServices: Number;
   intervalSeconds: Number;
   sizeThreshold: Number;
+  usePRBME: boolean;
+  useMEM: boolean;
 }

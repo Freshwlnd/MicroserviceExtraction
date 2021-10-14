@@ -181,12 +181,13 @@ public class EvaluationMetrics {
         this.OPN = OPN;
     }
 
-    public void setJinMetrics(double CHM, double CHD, double IFN, double IRN, double OPN) {
-        setCHM(CHM);
+    // CHD CHM IFN OPN IRN
+    public void setJinMetrics(double CHD, double CHM, double IFN, double OPN, double IRN) {
         setCHD(CHD);
+        setCHM(CHM);
         setIFN(IFN);
-        setIRN(IRN);
         setOPN(OPN);
+        setIRN(IRN);
     }
 
     @Override

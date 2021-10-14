@@ -33,7 +33,27 @@ public class DecompositionParameters {
 
     private int sizeThreshold;
 
-    public long getId(){
+    private boolean usePRBME;
+
+    private boolean useMEM;
+
+    public boolean isUsePRBME() {
+        return usePRBME;
+    }
+
+    public void setUsePRBME(boolean usePRBME) {
+        this.usePRBME = usePRBME;
+    }
+
+    public boolean isUseMEM() {
+        return useMEM;
+    }
+
+    public void setUseMEM(boolean useMEM) {
+        this.useMEM = useMEM;
+    }
+
+    public long getId() {
         return id;
     }
 
@@ -68,6 +88,7 @@ public class DecompositionParameters {
     public void setDynamicCoupling(boolean dynamicCoupling) {
         this.dynamicCoupling = dynamicCoupling;
     }
+
     public int getNumServices() {
         return numServices;
     }
@@ -102,6 +123,8 @@ public class DecompositionParameters {
                 ", numServices=" + numServices +
                 ", intervalSeconds=" + intervalSeconds +
                 ", sizeThreshold=" + sizeThreshold +
+                ", usePRBME=" + usePRBME +
+                ", useMEM=" + useMEM +
                 '}';
     }
 }

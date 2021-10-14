@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Genc on 15.01.2017.
@@ -44,7 +45,7 @@ public class MicroserviceSimilarityService {
 
         String pathPrefix = configs.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId();
 
-        List<String> FilePaths = microservice.getFilePaths();
+        List<String> FilePaths = microservice.getFilePaths().stream().map(item -> item = item.replace('.', '/') + ".java").collect(Collectors.toList());
         List<List<String>> contents = new ArrayList<>();
         for (String filePath : FilePaths) {
             try {
@@ -71,7 +72,7 @@ public class MicroserviceSimilarityService {
 
 
     private List<String> computeTokenizedServiceContent(GitRepository repo, Component microservice) throws IOException {
-        List<String> filePaths = microservice.getFilePaths();
+        List<String> filePaths = microservice.getFilePaths().stream().map(item -> item = item.replace('.', '/') + ".java").collect(Collectors.toList());
         String pathPrefix = configs.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId();
 
         List<String> content = new ArrayList<>();

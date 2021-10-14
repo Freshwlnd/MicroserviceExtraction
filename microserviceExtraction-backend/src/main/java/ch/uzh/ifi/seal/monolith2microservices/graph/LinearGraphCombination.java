@@ -105,8 +105,10 @@ public class LinearGraphCombination {
         Map<String, CouplingTriple> couplingMap = new HashMap<>();
 
         if (this.logicalCouplings != null) {
+            Double sumScore = this.logicalCouplings.stream().mapToDouble(BaseCoupling::getScore).sum();
             this.logicalCouplings.forEach(l -> {
                 presolvePath(l);
+                l.setScore(l.getScore() / sumScore);
                 CouplingTriple triple = new CouplingTriple();
                 triple.setLogicalCoupling(l);
                 triple.setFirstFile(l.getFirstFileName());
@@ -116,7 +118,10 @@ public class LinearGraphCombination {
         }
 
         if (this.semanticCouplings != null) {
+            Double sumScore = this.semanticCouplings.stream().mapToDouble(BaseCoupling::getScore).sum();
             this.semanticCouplings.forEach(s -> {
+                presolvePath(s);
+                s.setScore(s.getScore() / sumScore);
                 String key = generateKeyFromFileNames(s.getFirstFileName(), s.getSecondFileName());
                 CouplingTriple triple = couplingMap.get(key);
                 if (triple == null) {
@@ -132,7 +137,10 @@ public class LinearGraphCombination {
         }
 
         if (this.contributorCouplings != null) {
+            Double sumScore = this.contributorCouplings.stream().mapToDouble(BaseCoupling::getScore).sum();
             this.contributorCouplings.forEach(c -> {
+                presolvePath(c);
+                c.setScore(c.getScore() / sumScore);
                 String key = generateKeyFromFileNames(c.getFirstFileName(), c.getSecondFileName());
                 CouplingTriple triple = couplingMap.get(key);
                 if (triple == null) {
@@ -148,7 +156,10 @@ public class LinearGraphCombination {
         }
 
         if (this.dynamicCouplings != null) {
+            Double sumScore = this.dynamicCouplings.stream().mapToDouble(BaseCoupling::getScore).sum();
             this.dynamicCouplings.forEach(d -> {
+                presolvePath(d);
+                d.setScore(d.getScore() / sumScore);
                 String key = generateKeyFromFileNames(d.getFirstFileName(), d.getSecondFileName());
                 CouplingTriple triple = couplingMap.get(key);
                 if (triple == null) {

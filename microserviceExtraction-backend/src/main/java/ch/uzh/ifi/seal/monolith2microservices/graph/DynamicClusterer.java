@@ -32,7 +32,7 @@ public final class DynamicClusterer {
         List<WeightedEdge> RelationMST = MinimumSpanningTree.of(RelationGraph).stream().collect(Collectors.toList());
         List<Component> components = ConnectedComponents.connectedComponents(RelationMST);
 
-        ALLNODENUM = RelationMST.size() + 1;
+        ALLNODENUM = components.stream().mapToInt(Component::getSize).sum();
 
         Boolean isChanged = true;
 
