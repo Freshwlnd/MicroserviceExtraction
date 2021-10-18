@@ -45,6 +45,16 @@ public class EvaluationMetrics {
     private double OPN;
     private double IRN;
 
+    private int microserviceNum;
+
+    public int getMicroserviceNum() {
+        return microserviceNum;
+    }
+
+    public void setMicroserviceNum(int microserviceNum) {
+        this.microserviceNum = microserviceNum;
+    }
+
     public long getId() {
         return this.id;
     }

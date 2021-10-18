@@ -119,7 +119,7 @@ public class LogfileVisitor extends SimpleFileVisitor<Path> {
             nowLogfilePairContents.add(logfilePairContent);
             logfileMap.put(key, nowLogfilePairContents);
         });
-        List<List<LogfilePairContent>> logfilePairContentLists = logfileMap.values().stream().collect(Collectors.toList());
+        List<List<LogfilePairContent>> logfilePairContentLists = new ArrayList<>(logfileMap.values());
 
         // 将 LogfilePairContent 转化为 MethodCallContent，并按 TraceId 放到各个 MethodCall 中
         List<MethodCallContent> methodCallContents = new ArrayList<>();

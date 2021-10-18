@@ -45,15 +45,15 @@ public class DecompositionController {
 
 
     @CrossOrigin
-    @RequestMapping(value="/repositories/{repoId}/decomposition", method=RequestMethod.POST)
-    public ResponseEntity<Set<GraphRepresentation>> decomposition(@PathVariable Long repoId, @RequestBody DecompositionParameters decompositionDTO){
+    @RequestMapping(value = "/repositories/{repoId}/decomposition", method = RequestMethod.POST)
+    public ResponseEntity<Set<GraphRepresentation>> decomposition(@PathVariable Long repoId, @RequestBody DecompositionParameters decompositionDTO) {
         logger.info(decompositionDTO.toString());
 
         //find repository to be decomposed
         GitRepository repo = repository.findById(repoId);
 
         //perform decomposition
-        Decomposition decomposition = decompositionService.decompose(repo,decompositionDTO);
+        Decomposition decomposition = decompositionService.decompose(repo, decompositionDTO);
 
         // convert to graph representation for frontend
         Set<GraphRepresentation> graph = decomposition.getServices().stream().map(GraphRepresentation::from).collect(Collectors.toSet());
@@ -61,8 +61,26 @@ public class DecompositionController {
         // Compute evaluation metrics
         evaluationService.performEvaluation(decomposition);
 
-        return new ResponseEntity<>(graph,HttpStatus.OK);
+        return new ResponseEntity<>(graph, HttpStatus.OK);
     }
 
+
+    @CrossOrigin
+    @RequestMapping(value = "/repositories/{repoId}/decompositionForEvaluate", method = RequestMethod.POST)
+    public ResponseEntity<EvaluationMetrics> decompositionForEvaluate(@PathVariable Long repoId, @RequestBody DecompositionParameters decompositionDTO) {
+        logger.info(decompositionDTO.toString());
+
+        //find repository to be decomposed
+        GitRepository repo = repository.findById(repoId);
+
+        //perform decomposition
+        Decomposition decomposition = decompositionService.decompose(repo, decompositionDTO);
+
+        // Compute evaluation metrics
+        EvaluationMetrics evaluationMetrics = evaluationService.performEvaluationAndReturn(decomposition);
+        evaluationMetrics.setDecomposition(null);
+
+        return new ResponseEntity<>(evaluationMetrics, HttpStatus.OK);
+    }
 
 }

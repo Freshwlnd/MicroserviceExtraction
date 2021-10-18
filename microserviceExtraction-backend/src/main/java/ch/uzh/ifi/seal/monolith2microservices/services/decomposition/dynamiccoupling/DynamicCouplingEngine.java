@@ -1,10 +1,13 @@
 package ch.uzh.ifi.seal.monolith2microservices.services.decomposition.dynamiccoupling;
 
 import ch.uzh.ifi.seal.monolith2microservices.main.Configs;
+import ch.uzh.ifi.seal.monolith2microservices.models.ClassContent;
 import ch.uzh.ifi.seal.monolith2microservices.models.MethodCallContent;
 import ch.uzh.ifi.seal.monolith2microservices.models.couplings.DynamicCoupling;
 import ch.uzh.ifi.seal.monolith2microservices.models.git.GitRepository;
 import ch.uzh.ifi.seal.monolith2microservices.services.FilePathFilter;
+import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.semanticcoupling.classprocessing.ClassContentVisitor;
+import ch.uzh.ifi.seal.monolith2microservices.utils.ClassContentFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,15 +41,30 @@ public class DynamicCouplingEngine {
 
         //Read class files (content) from repo
         String localRepoPath = config.localRepositoryDirectory + "/" + repo.getName() + "_" + repo.getId();
-
         Path repoDirectory = Paths.get(localRepoPath);
 
-        LogfileVisitor visitor = new LogfileVisitor();
-        visitor.setFilePathFilter(filePathFilter);
+        // load logfile
+        LogfileVisitor logfileVisitor = new LogfileVisitor();
+        logfileVisitor.setFilePathFilter(filePathFilter);
+        Files.walkFileTree(repoDirectory, logfileVisitor);
+        methodCallContents = logfileVisitor.getMethodCallContents();
 
-        Files.walkFileTree(repoDirectory, visitor);
+        // load all java classes (to avoid the situation that some classes are not included by logfile)
+        ClassContentVisitor classVisitor = new ClassContentVisitor(repo, config, new ClassContentFilter());
+        classVisitor.setFilePathFilter(filePathFilter);
+        Files.walkFileTree(repoDirectory, classVisitor);
+        List<String> allClasses = classVisitor.getClasses().stream().map(classContent -> classContent.getFilePath().replaceAll("\\.java$", "").replace('/', '.')).collect(Collectors.toList());
 
-        methodCallContents = visitor.getMethodCallContents();
+        // get classes which are not included by logfile
+        Set<String> logfileClasses = new HashSet<>();
+        List<String> beNotIncludedClasses = new ArrayList<>(allClasses);
+        methodCallContents.forEach(methodCallContent -> {
+            methodCallContent.getContent().forEach(content -> {
+                logfileClasses.add(content.getCallerClassName());
+                logfileClasses.add(content.getCalleeClassName());
+            });
+        });
+        beNotIncludedClasses.removeAll(logfileClasses);
 
         // CallingGraph
         Map<String, DynamicCoupling> callingMap = new HashMap<>();
@@ -90,6 +108,9 @@ public class DynamicCouplingEngine {
             });
         });
         RelationGraph = relationMap.values().stream().collect(Collectors.toList());
+        beNotIncludedClasses.forEach(str -> {
+            RelationGraph.add(new DynamicCoupling(str, str, 0));
+        });
 
     }
 

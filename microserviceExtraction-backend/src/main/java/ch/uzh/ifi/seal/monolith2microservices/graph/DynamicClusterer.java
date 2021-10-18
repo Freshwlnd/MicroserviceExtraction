@@ -18,6 +18,10 @@ import static java.lang.Math.max;
 public final class DynamicClusterer {
 
     private static Integer ALLNODENUM = 1;
+    private static Integer MICRONUM = 1;
+
+    private static final Double ALPHA = 3.;
+    private static final Double BETA = 3.;
 
     private final static WeightedEdgeComparator weightedEdgeComparator = new WeightedEdgeComparator();
 
@@ -27,17 +31,36 @@ public final class DynamicClusterer {
 
     public static Set<Component> clusterWithSplit(List<? extends BaseCoupling> RelationGraph, List<? extends BaseCoupling> CallingGraph, Integer numOfMicroservices) {
 
-        normalization(RelationGraph);
 
-        List<WeightedEdge> RelationMST = MinimumSpanningTree.of(RelationGraph).stream().collect(Collectors.toList());
+        // get all nodes
+        Set<String> allNodes = new HashSet<>();
+        RelationGraph.forEach(baseCoupling -> {
+            allNodes.add(baseCoupling.getFirstFileName());
+            allNodes.add(baseCoupling.getSecondFileName());
+        });
+        List<Component> allNodesComponent = allNodes.stream().map(str -> {
+            Component comp = new Component();
+            comp.addNode(new ClassNode(str));
+            return comp;
+        }).collect(Collectors.toList());
+
+        // delete self-loop edges
+        RelationGraph.removeIf(cur -> cur.getFirstFileName().equals(cur.getSecondFileName()));
+
+        normalization(RelationGraph);
+        List<WeightedEdge> RelationMST = new ArrayList<>(MinimumSpanningTree.of(RelationGraph));
         List<Component> components = ConnectedComponents.connectedComponents(RelationMST);
+
+        pickUpOtherNodes(components, allNodesComponent);
 
         ALLNODENUM = components.stream().mapToInt(Component::getSize).sum();
 
-        Boolean isChanged = true;
+        boolean isChanged = true;
 
         while (isChanged && components.size() < numOfMicroservices) {
             isChanged = false;
+
+            MICRONUM = components.size();
 
             if (splitByMST(RelationGraph, RelationMST, components)) {
                 isChanged = true;
@@ -335,7 +358,7 @@ public final class DynamicClusterer {
         // component的size越小，越容易被划分，这是不希望被看到的
         // Double choosedParameter = 2.;
         Double choosedParameter;
-        choosedParameter = max(2., 2. * ALLNODENUM / 4 / component.getSize());
+        choosedParameter = max(ALPHA, BETA * ALLNODENUM / MICRONUM / component.getSize());
 
         Map<String, Integer> str2ID = new HashMap<>();
         Map<Integer, String> id2Str = new HashMap<>();
@@ -423,6 +446,7 @@ public final class DynamicClusterer {
 
         Map<String, Double> sumOfEdgeWeight = new HashMap<>();
 
+        // score==0: 无边的单独节点的自环
         RelationGraph.forEach(coupling -> {
             Double firstWeightSum = sumOfEdgeWeight.get(coupling.getFirstFileName());
             Double secondWeightSum = sumOfEdgeWeight.get(coupling.getSecondFileName());

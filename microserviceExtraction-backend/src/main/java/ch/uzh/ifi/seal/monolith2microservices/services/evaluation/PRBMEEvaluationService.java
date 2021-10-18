@@ -13,6 +13,7 @@ import ch.uzh.ifi.seal.monolith2microservices.models.graph.Component;
 import ch.uzh.ifi.seal.monolith2microservices.models.graph.Decomposition;
 import ch.uzh.ifi.seal.monolith2microservices.services.decomposition.dynamiccoupling.DynamicCouplingEngine;
 import ch.uzh.ifi.seal.monolith2microservices.utils.ClassContentFilter;
+import ch.uzh.ifi.seal.monolith2microservices.utils.DomainTermInClassNameFilter;
 import ch.uzh.ifi.seal.monolith2microservices.utils.FilterInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class PRBMEEvaluationService {
 
     // CHD CHM IFN OPN IRN
     public ArrayList<Double> computeJinMetrics(GitRepository repo, Set<Component> microservices) throws IOException {
-        filterInterface = new ClassContentFilter();
+        filterInterface = new DomainTermInClassNameFilter();
         methodCallContents = dynamicCouplingEngine.getMethodCallContents(repo);
         // 给微服务设置id，建立类到微服务的映射()
         buildMapBetweenClassAndMicroservice(microservices);
@@ -63,7 +64,12 @@ public class PRBMEEvaluationService {
                 List<Double> chdi = new ArrayList<>();
                 for (Method method1 : methodMap.values()) {
                     for (Method method2 : methodMap.values()) {   // 对任意两个方法
-                        chdi.add(CHDSimilarity(method1, method2));    // 求相似度()
+                        if (method1.getMethodName().equals(method2.getMethodName())) {
+                            continue;
+                        }
+                        Double simVal = CHDSimilarity(method1, method2);
+                        if (!simVal.equals(-1D))
+                            chdi.add(simVal);    // 求相似度()
                     }
                 }
                 // 取平均值【除以"方法数*(方法数+1)/2"】
@@ -87,7 +93,9 @@ public class PRBMEEvaluationService {
                         if (method1.getMethodName().equals(method2.getMethodName())) {
                             continue;
                         }
-                        chmi.add(CHMSimilarity(method1, method2));    // 求相似度()
+                        Double simVal = CHMSimilarity(method1, method2);
+                        if (!simVal.equals(-1D))
+                            chmi.add(simVal);    // 求相似度()
                     }
                 }
                 // 取平均值【除以"方法数*(方法数+1)/2"】
@@ -209,13 +217,14 @@ public class PRBMEEvaluationService {
 
     private Double CHDSimilarity(Method method1, Method method2) {
 
-        Set<String> term1 = filterInterface.filterFileContent(method1.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method1.getMethodName(), ".", 2))).stream().map(String::toLowerCase).collect(Collectors.toSet());
-        Set<String> term2 = filterInterface.filterFileContent(method2.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method2.getMethodName(), ".", 2))).stream().map(String::toLowerCase).collect(Collectors.toSet());
+        Set<String> term1 = filterInterface.filterFileContent(method1.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method1.getMethodName(), ".", 3))).stream().map(String::toLowerCase).collect(Collectors.toSet());
+        Set<String> term2 = filterInterface.filterFileContent(method2.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method2.getMethodName(), ".", 3))).stream().map(String::toLowerCase).collect(Collectors.toSet());
         Set<String> termUnionSet, termIntersectionSet;
         termUnionSet = new HashSet<>(term1);
         termIntersectionSet = new HashSet<>(term1);
         termUnionSet.addAll(term2);
         termIntersectionSet.retainAll(term2);
+        if (termUnionSet.size() == 0) return -1D;
         return 1d * termIntersectionSet.size() / termUnionSet.size();
     }
 
@@ -234,7 +243,17 @@ public class PRBMEEvaluationService {
         paraIntersectionSet.retainAll(para2);
         retUnionSet.addAll(ret2);
         retIntersectionSet.retainAll(ret2);
-        return (1d * paraIntersectionSet.size() / paraUnionSet.size() + 1d * retIntersectionSet.size() / retUnionSet.size()) / 2d;
+        Double paraVal = -1D, retVal = -1D;
+        if (paraUnionSet.size() != 0) {
+            paraVal = 1d * paraIntersectionSet.size() / paraUnionSet.size();
+        }
+        if (retUnionSet.size() != 0) {
+            retVal = 1d * retIntersectionSet.size() / retUnionSet.size();
+        }
+        if (paraVal.equals(-1D) && retVal.equals(-1D)) return -1D;
+        if (paraVal.equals(-1D)) return retVal;
+        if (retVal.equals(-1D)) return paraVal;
+        return (paraVal + retVal) / 2D;
     }
 
 }

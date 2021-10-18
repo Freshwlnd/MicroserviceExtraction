@@ -92,6 +92,7 @@ public class MicroserviceEvaluationService {
                 while (reader.readLine() != null) {
                     lineCounter++;
                 }
+                reader.close();
             } catch (IOException ioe) {
                 logger.error(ioe.getMessage());
             }

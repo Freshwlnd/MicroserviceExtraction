@@ -31,7 +31,7 @@ export class DecomposeComponent implements OnInit{
 
   dynamicCoupling: boolean;
 
-  numServices: Number = 14;
+  numServices: Number = 7;
 
   intervalSeconds: Number = 3600;
 
@@ -39,7 +39,7 @@ export class DecomposeComponent implements OnInit{
 
   isDataAvailable: boolean;
 
-  useMethod: String = "MEM"
+  useMethod: String = "PRBME"
 
 
   constructor(private _rest : RestService, private _route: ActivatedRoute, private _datapassingService: DataPassingService, private _router: Router){

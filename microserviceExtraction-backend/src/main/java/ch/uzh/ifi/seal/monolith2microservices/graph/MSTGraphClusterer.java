@@ -76,6 +76,9 @@ public final class MSTGraphClusterer {
 
     public static Set<Component> clusterWithSplit(List<? extends BaseCoupling> couplings, int splitThreshold, int numServices) {
 
+        // delete self-loop edges
+        couplings.removeIf(cur -> cur.getFirstFileName().equals(cur.getSecondFileName()));
+
         Set<String> nodes = getNodesFromCoupling(couplings);
 
         List<Component> components = ConnectedComponents.connectedComponents(computeClusters(MinimumSpanningTree.of(couplings), numServices));

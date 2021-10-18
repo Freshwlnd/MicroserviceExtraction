@@ -38,25 +38,47 @@ public class EvaluationService {
 
 
     @Async
-    public void performEvaluation(Decomposition decomposition){
-        try{
+    public void performEvaluation(Decomposition decomposition) {
+        try {
             List<MicroserviceMetrics> microserviceMetrics = computeMicroserviceMetrics(decomposition);
             microserviceMetricsRepository.save(microserviceMetrics);
 
             EvaluationMetrics metrics = decompositionEvaluationService.computeMetrics(decomposition, microserviceMetrics);
             decompositionMetricsRepository.save(metrics);
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             logger.error(ioe.getMessage());
         }
     }
 
 
-    private List<MicroserviceMetrics> computeMicroserviceMetrics(Decomposition decomposition) throws IOException{
+    private List<MicroserviceMetrics> computeMicroserviceMetrics(Decomposition decomposition) throws IOException {
+        try {
         List<MicroserviceMetrics> microserviceMetrics = new ArrayList<>();
-        for(Component microservice: decomposition.getServices()){
+        for (Component microservice : decomposition.getServices()) {
             microserviceMetrics.add(microserviceEvaluationService.from(microservice, decomposition.getRepository(), decomposition.getHistory()));
         }
         return microserviceMetrics;
+        } catch (IOException ioe) {
+            logger.error(ioe.getMessage());
+        }
+        return new ArrayList<>();
+    }
+
+
+    public EvaluationMetrics performEvaluationAndReturn(Decomposition decomposition) {
+        try {
+            List<MicroserviceMetrics> microserviceMetrics = computeMicroserviceMetrics(decomposition);
+            microserviceMetricsRepository.save(microserviceMetrics);
+
+            EvaluationMetrics metrics = decompositionEvaluationService.computeMetrics(decomposition, microserviceMetrics);
+            decompositionMetricsRepository.save(metrics);
+
+            return metrics;
+
+        } catch (IOException ioe) {
+            logger.error(ioe.getMessage());
+        }
+        return new EvaluationMetrics();
     }
 
 }

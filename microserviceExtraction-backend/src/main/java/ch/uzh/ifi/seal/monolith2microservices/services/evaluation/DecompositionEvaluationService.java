@@ -41,6 +41,7 @@ public class DecompositionEvaluationService {
 
     public EvaluationMetrics computeMetrics(Decomposition decomposition, List<MicroserviceMetrics> microserviceMetrics) throws IOException {
         EvaluationMetrics metrics = new EvaluationMetrics();
+        try {
         metrics.setDecomposition(decomposition);
         metrics.setContributorsPerMicroservice(computeContributorPerMicroservice(microserviceMetrics));
         metrics.setContributorOverlapping(computeContributorOverlapping(microserviceMetrics));
@@ -54,8 +55,12 @@ public class DecompositionEvaluationService {
         metrics.setExecutionTimeMillisStrategy(decomposition.getStrategyTime());
         ArrayList<Double> JinMetrics = computeJinMetrics(decomposition);   // CHD CHM IFN OPN IRN
         metrics.setJinMetrics(JinMetrics.get(0), JinMetrics.get(1), JinMetrics.get(2), JinMetrics.get(3), JinMetrics.get(4));
-        System.out.println(decomposition.getServices().size());
-        System.out.println(JinMetrics);
+        metrics.setMicroserviceNum(decomposition.getServices().size());
+//        System.out.println(decomposition.getServices().size());
+//        System.out.println(JinMetrics);
+        } catch (IOException ioe) {
+            logger.error(ioe.getMessage());
+        }
         return metrics;
     }
 
