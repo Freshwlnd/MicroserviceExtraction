@@ -217,8 +217,8 @@ public class PRBMEEvaluationService {
 
     private Double CHDSimilarity(Method method1, Method method2) {
 
-        Set<String> term1 = filterInterface.filterFileContent(method1.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method1.getMethodName(), ".", 3))).stream().map(String::toLowerCase).collect(Collectors.toSet());
-        Set<String> term2 = filterInterface.filterFileContent(method2.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method2.getMethodName(), ".", 3))).stream().map(String::toLowerCase).collect(Collectors.toSet());
+        Set<String> term1 = filterInterface.filterFileContent(method1.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method1.getMethodName(), ".", 2))).stream().map(String::toLowerCase).collect(Collectors.toSet());
+        Set<String> term2 = filterInterface.filterFileContent(method2.getMethodName().substring(org.apache.commons.lang3.StringUtils.lastOrdinalIndexOf(method2.getMethodName(), ".", 2))).stream().map(String::toLowerCase).collect(Collectors.toSet());
         Set<String> termUnionSet, termIntersectionSet;
         termUnionSet = new HashSet<>(term1);
         termIntersectionSet = new HashSet<>(term1);

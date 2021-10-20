@@ -20,8 +20,8 @@ public final class DynamicClusterer {
     private static Integer ALLNODENUM = 1;
     private static Integer MICRONUM = 1;
 
-    private static final Double ALPHA = 3.;
-    private static final Double BETA = 3.;
+    private static final Double ALPHA = 2.;
+    private static final Double BETA = 8./8.;
 
     private final static WeightedEdgeComparator weightedEdgeComparator = new WeightedEdgeComparator();
 
@@ -358,8 +358,8 @@ public final class DynamicClusterer {
         // component的size越小，越容易被划分，这是不希望被看到的
         // Double choosedParameter = 2.;
         Double choosedParameter;
-        choosedParameter = max(ALPHA, BETA * ALLNODENUM / MICRONUM / component.getSize());
-
+//        choosedParameter = max(ALPHA, BETA * ALLNODENUM / MICRONUM / component.getSize());
+        choosedParameter = max(ALPHA, BETA * ALLNODENUM / component.getSize());
         Map<String, Integer> str2ID = new HashMap<>();
         Map<Integer, String> id2Str = new HashMap<>();
         Integer nowId = 0;

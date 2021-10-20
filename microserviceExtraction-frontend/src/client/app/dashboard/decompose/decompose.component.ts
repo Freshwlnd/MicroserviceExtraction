@@ -23,15 +23,15 @@ export class DecomposeComponent implements OnInit{
 
   repository: Repository;
 
-  logicalCoupling: boolean = true;
+  logicalCoupling: boolean;
 
   semanticCoupling: boolean;
 
-  contributorCoupling: boolean;
+  contributorCoupling: boolean = true;
 
   dynamicCoupling: boolean;
 
-  numServices: Number = 7;
+  numServices: Number = 3;
 
   intervalSeconds: Number = 3600;
 
@@ -39,7 +39,7 @@ export class DecomposeComponent implements OnInit{
 
   isDataAvailable: boolean;
 
-  useMethod: String = "PRBME"
+  useMethod: String = "MEM"
 
 
   constructor(private _rest : RestService, private _route: ActivatedRoute, private _datapassingService: DataPassingService, private _router: Router){

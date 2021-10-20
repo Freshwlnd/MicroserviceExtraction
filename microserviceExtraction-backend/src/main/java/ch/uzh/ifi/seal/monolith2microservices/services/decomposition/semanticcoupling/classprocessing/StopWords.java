@@ -47,7 +47,7 @@ public class StopWords {
             "POST", "GET", "PUT", "DELETE", "method", "redirect", "get", "this", "super", "django", "contrib", "models", "views", "redirect"    );
 
     public static final List<String> NOTDOMAIN_KEYWORDS = Arrays.asList(
-//            "Mapper", "Action", "Bean", "insert", "delete", "update", "is", "new", "By", "And", "To", "set",
+            "mapper", "action", "bean", "insert", "delete", "update", "is", "new", "by", "and", "to", "set",
             "jpetstore", "jforum", "xwiki", "roller", "agilefant", "blog", "raysmond",
             "b3log", "solo", "fi", "hut", "soberit", "agilefant", "servlets", "javax",
             "java", "net", "org", "util", "lang", "apache", "roller", "weblogger", "int",
