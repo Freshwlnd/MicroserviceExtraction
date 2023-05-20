@@ -231,3 +231,36 @@ Currently the `ENV_NAME`s are `dev`, `prod`, `staging`, but you can simply add a
 ├── typings.json
 └── appveyor.yml
 ```
+
+### 错误排查
+
+* 尝试使用了多种版本的node（如`20.1.0`、`6.10.3`、`4.2.3`等）
+
+  * 太高的版本报错:
+```
+...
+node_modules/natives/index.js:143
+    fn(internalBinding)(nm.exports, cachingRequire, nm, nm.filename, '<no dirname available>')
+                       ^
+ReferenceError: primordials is not defined
+...
+```
+
+  * 太低的版本报错:
+```
+npm ERR! Linux 3.10.0-957.el7.x86_64
+npm ERR! argv "/usr/local/bin/node" "/usr/local/bin/npm" "install"
+npm ERR! node v6.10.3
+npm ERR! npm  v3.10.10
+npm ERR! path /home/node_modules/.staging/@types/mime-993131a2/package.json
+npm ERR! code ENOTDIR
+npm ERR! errno -20
+npm ERR! syscall open
+
+npm ERR! ENOTDIR: not a directory, open '/home/node_modules/.staging/@types/mime-993131a2/package.json'
+```
+
+    * 主要基于低版本进行debug（考虑到适配开发时的环境），针对性排除错误后发现是@type/express包所导致的，但更换了多种版本后仍然失败。
+    * 最终灵光一现（在进行了数天的排错后），尝试把node适当升级，参考[node-npm版本对应关系](https://nodejs.org/zh-cn/download/releases)，最终找到了合适的node版本：。
+
+* 目前已新增镜像打包脚本，避免未来重复遇到该问题。
