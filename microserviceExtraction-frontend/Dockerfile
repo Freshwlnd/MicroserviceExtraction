@@ -1,9 +1,6 @@
-# FROM node:6.10.3
-FROM node:4.2.3
+FROM node:8.17.0
 WORKDIR /home
 COPY . .
-# COPY package*.json ./
-# RUN npm install --registry https://registry.npm.taobao.org
+RUN npm install
 EXPOSE 5555
-# CMD ["npm", "start"]
-CMD ["npm", "install", "&&", "npm", "start"]
+CMD ["npm", "start"]

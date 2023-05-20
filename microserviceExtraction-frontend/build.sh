@@ -1,0 +1,3 @@
+docker build --no-cache -t registry.cn-hangzhou.aliyuncs.com/microservice-extraction/myimages:microservice-extraction-frontend .
+docker push registry.cn-hangzhou.aliyuncs.com/microservice-extraction/myimages:microservice-extraction-frontend
+# docker run --name microservice-extraction-frontend-v2 -p 5555:5555 -d registry.cn-hangzhou.aliyuncs.com/microservice-extraction/myimages:microservice-extraction-fronten
