@@ -33,9 +33,9 @@ public class DecompositionParameters {
 
     private int sizeThreshold;
 
-    private boolean usePRBME;
+    private boolean usePRBME=true;
 
-    private boolean useMEM;
+    private boolean useMEM=false;
 
     public boolean isUsePRBME() {
         return usePRBME;

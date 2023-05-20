@@ -6,15 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="6e03b6cd-eeb4-425c-9199-b2be225fd216" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/graph/DynamicClusterer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/StopWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/semanticcoupling/classprocessing/StopWords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/PRBMEEvaluationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/PRBMEEvaluationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/app/dashboard/decompose/decompose.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/DecompositionParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/DecompositionParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/graph/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/models/graph/Component.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/dev/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/tmp/app/dashboard/decompose/decompose.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/dist/tmp/app/dashboard/decompose/decompose.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../microserviceExtraction-frontend/src/client/app/dashboard/decompose/decompose.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/caniuse-db/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/caniuse-db/fulldata-json/data-1.0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/caniuse-db/fulldata-json/data-2.0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/node-sass/vendor/darwin-x64-48/binding.node" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/protractor/selenium/chromedriver_2.21mac32.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../microserviceExtraction-frontend/node_modules/traceur/bin/traceur.js.map" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,6 +273,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -368,6 +372,18 @@
       <workItem from="1634563563351" duration="532000" />
       <workItem from="1634610414931" duration="16732000" />
       <workItem from="1634711214492" duration="21000" />
+      <workItem from="1634884712391" duration="569000" />
+      <workItem from="1635229628847" duration="5426000" />
+      <workItem from="1635242862278" duration="1051000" />
+      <workItem from="1636382679251" duration="604000" />
+      <workItem from="1651472959315" duration="2102000" />
+      <workItem from="1651938307119" duration="1082000" />
+      <workItem from="1652066892492" duration="659000" />
+      <workItem from="1656313572340" duration="2001000" />
+      <workItem from="1656315852238" duration="1024000" />
+      <workItem from="1656415382472" duration="30000" />
+      <workItem from="1667376548634" duration="4869000" />
+      <workItem from="1678101126902" duration="20000" />
     </task>
     <servers />
   </component>
@@ -464,19 +480,9 @@
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java</url>
-          <line>159</line>
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/EvaluationService.java</url>
           <line>78</line>
           <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/DecompositionEvaluationService.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="96" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/EvaluationService.java</url>
@@ -487,6 +493,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/evaluation/EvaluationService.java</url>
           <line>61</line>
           <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/uzh/ifi/seal/monolith2microservices/services/decomposition/DecompositionService.java</url>
+          <line>132</line>
+          <option name="timeStamp" value="119" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

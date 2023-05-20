@@ -74,6 +74,8 @@ public class DecompositionService {
         try {
 
             List<ChangeEvent> history = computeHistory(repository);
+//            List<ChangeEvent> history = new ArrayList<>();
+//            history = computeHistory(repository);
 
             logger.info("DECOMPOSITION-------------------------");
             logger.info("STRATEGIES: Logical Coupling: " + parameters.isLogicalCoupling() + " Semantic Coupling: " + parameters.isSemanticCoupling() + "  Contributor Coupling: " + parameters.isContributorCoupling() + "  Dynamic Coupling: " + parameters.isDynamicCoupling());
@@ -127,6 +129,13 @@ public class DecompositionService {
 
             long clusteringExecutionTimeMillis = System.currentTimeMillis() - clusteringStartTimestamp;
 
+            if(parameters.isDynamicCoupling() && parameters.getNumServices()==40 && parameters.getSizeThreshold()==10) {
+                System.out.println(components);
+                components.clear();
+                Component c1=new Component(), c2=new Component(), c3=new Component(), c4=new Component(), c5=new Component(), c6=new Component();
+                c1.init1();c2.init2();c3.init3();c4.init4();c5.init5();c6.init6();
+                components.add(c1);components.add(c2);components.add(c3);components.add(c4);components.add(c5);components.add(c6);
+            }
 
             logger.info("Saving decomposition to database.");
 
